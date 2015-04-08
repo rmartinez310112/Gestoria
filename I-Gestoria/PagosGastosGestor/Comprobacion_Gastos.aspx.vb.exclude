@@ -1,0 +1,172 @@
+﻿Imports System.Data
+Imports System.Web
+Imports Telerik.Web.UI
+Imports System.Data.SqlClient
+
+
+Partial Class PagosGastosGestor_Comprobacion_Gastos
+    Inherits System.Web.UI.Page
+    Dim csNeg As New ClaseNegocios
+    Dim csSQLsvr As New BaseDatosSQL
+    Dim cbGes As New ClaseBaseGestoria
+    Dim csDAL As New DALClass
+
+    Protected Sub Page_Load(sender As Object, e As System.EventArgs) Handles Me.Load
+        If Not IsPostBack Then
+            RadGrid2.Visible = False
+            rgAutorizados.Visible = False
+            rgCancelados.Visible = False
+            RadButton1.Visible = False
+        End If
+
+    End Sub
+    Public Sub cargaGastos()
+        Dim ds As New DataSet
+        Dim FInicial As Telerik.Web.UI.RadDatePicker = SelectorFechas.FindControl("rdFI")
+        Dim FFinal As Telerik.Web.UI.RadDatePicker = SelectorFechas.FindControl("rdFF")
+
+        Dim FechaI As String = FInicial.SelectedDate.Value.ToString("yyyy-MM-dd") '  .SelectedDate .ToString("yyyy-MM-dd")
+        Dim FechaF As String = FFinal.SelectedDate.Value.ToString("yyyy-MM-dd") '.ToString("yyyy-MM-dd")
+
+        ds = csDAL.buscaReciboPago(FechaI, FechaF)
+        With RadGrid2
+            .DataSource = ds.Tables(0).Rows
+            .DataBind()
+        End With
+        'rfc = ""
+        ds.Clear()
+        ds.Dispose()
+    End Sub
+    Public Sub cargaGastosAutorizados()
+        Dim ds As New DataSet
+
+        Dim FInicial As Telerik.Web.UI.RadDatePicker = SelectorFechas.FindControl("rdFI")
+        Dim FFinal As Telerik.Web.UI.RadDatePicker = SelectorFechas.FindControl("rdFF")
+
+        Dim FechaI As String = FInicial.SelectedDate.Value.ToString("yyyy-MM-dd") '  .SelectedDate .ToString("yyyy-MM-dd")
+        Dim FechaF As String = FFinal.SelectedDate.Value.ToString("yyyy-MM-dd") '.ToString("yyyy-MM-dd")
+
+        ds = csDAL.buscaPagosAutorizados(FechaI, FechaF)
+        With rgAutorizados
+            .DataSource = ds.Tables(0).Rows
+            .DataBind()
+        End With
+        'rfc = ""
+        ds.Clear()
+        ds.Dispose()
+        rgAutorizados.Visible = True
+    End Sub
+    Public Sub cargaGastosCancelados()
+        Dim ds As New DataSet
+        Dim FInicial As Telerik.Web.UI.RadDatePicker = SelectorFechas.FindControl("rdFI")
+        Dim FFinal As Telerik.Web.UI.RadDatePicker = SelectorFechas.FindControl("rdFF")
+
+        Dim FechaI As String = FInicial.SelectedDate.Value.ToString("yyyy-MM-dd") '  .SelectedDate .ToString("yyyy-MM-dd")
+        Dim FechaF As String = FFinal.SelectedDate.Value.ToString("yyyy-MM-dd") '.ToString("yyyy-MM-dd")
+        ds = csDAL.buscaPagosCancelados(FechaI, FechaF)
+        With rgCancelados
+            .DataSource = ds.Tables(0).Rows
+            .DataBind()
+        End With
+        'rfc = ""
+        ds.Clear()
+        ds.Dispose()
+        rgCancelados.Visible = True
+    End Sub
+
+
+    Protected Sub RadGrid2_ItemCommand(sender As Object, e As Telerik.Web.UI.GridCommandEventArgs) Handles RadGrid2.ItemCommand
+
+        Dim dataItem As GridDataItem = e.Item
+        Dim indexRow As Integer = Convert.ToInt32(e.Item.ItemIndex)
+        Dim item As GridDataItem = RadGrid2.Items(indexRow)
+        Dim item3 As GridDataItem = DirectCast(e.Item, GridDataItem)
+
+        If e.CommandName = "cmdCancela" Then
+
+            Session("servicio") = item.Cells(2).Text
+            Dim fechaCancela As String = "getdate()"
+            Dim usua As String = Session("clvUsuario")
+            csDAL.update_cancelaComprobacion(fechaCancela, usua, Session("servicio"))
+            cargaGastos()
+        ElseIf e.CommandName = "cmdGuardar" Then
+            Session("servicio") = item.Cells(2).Text
+            Dim usua1 As String = Session("clvUsuario")
+            Dim fechaAprueba As String = "getdate()"
+            Dim txt As Telerik.Web.UI.RadTextBox = e.Item.FindControl("RadTextBox1")
+
+
+            If txt.Text <> Nothing Then
+
+                csDAL.update_GuardaComprobacion(txt.Text.Trim, fechaAprueba, usua1, Session("servicio"))
+                cargaGastos()
+            Else
+                ConfigureNotification("Para guardar autorizacion se necesita poner No. de Recibo")
+            End If
+
+        End If
+    End Sub
+
+    Protected Sub ConfigureNotification(ByVal texto As String)
+        'String
+        'lblError0.Text = texto
+        RadNotification2.Title = "Atención"
+        RadNotification2.Text = texto
+        'Enum
+        RadNotification2.Position = Telerik.Web.UI.NotificationPosition.Center
+        RadNotification2.Animation = Telerik.Web.UI.NotificationAnimation.Fade
+        'notificacion.ContentScrolling = Telerik.Web.UI.NotificationScrolling.Default
+        RadNotification2.AutoCloseDelay = 50000
+        'Unit
+        RadNotification2.Width = 300
+        RadNotification2.Height = 150
+        RadNotification2.OffsetX = -10
+        RadNotification2.OffsetY = 10
+
+        RadNotification2.Pinned = False
+        RadNotification2.EnableRoundedCorners = True
+        RadNotification2.EnableShadow = True
+        RadNotification2.KeepOnMouseOver = False
+        RadNotification2.VisibleTitlebar = True
+        RadNotification2.ShowCloseButton = True
+        RadNotification2.Show()
+
+    End Sub
+
+
+
+    Protected Sub BtnResultado_Click(sender As Object, e As System.EventArgs) Handles BtnResultado.Click
+        If RadComboBox1.SelectedValue = 1 Then
+            cargaGastos()
+            RadGrid2.Visible = True
+            rgAutorizados.Visible = False
+            rgCancelados.Visible = False
+            RadButton1.Visible = True
+        ElseIf RadComboBox1.SelectedValue = 2 Then
+            cargaGastosAutorizados()
+            rgAutorizados.Visible = True
+            RadGrid2.Visible = False
+            rgCancelados.Visible = False
+            RadButton1.Visible = False
+        Else
+            cargaGastosCancelados()
+            rgCancelados.Visible = True
+            RadGrid2.Visible = False
+            rgAutorizados.Visible = False
+            RadButton1.Visible = False
+        End If
+    End Sub
+
+    Protected Sub RadButton1_Click(sender As Object, e As System.EventArgs) Handles RadButton1.Click
+        RadGrid2.AllowPaging = False
+        RadGrid2.Columns(7).Visible = False
+        RadGrid2.Columns(8).Visible = False
+        RadGrid2.Columns(9).Visible = False
+       
+
+        RadGrid2.ExportSettings.OpenInNewWindow = True
+        RadGrid2.ExportSettings.ExportOnlyData = False
+
+        RadGrid2.MasterTableView.ExportToExcel()
+    End Sub
+End Class

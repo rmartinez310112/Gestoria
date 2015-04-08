@@ -1,0 +1,5 @@
+﻿
+Partial Class AsignacionControl_AsignarGestor_Pendiente
+    Inherits System.Web.UI.Page
+
+End Class

@@ -1,0 +1,119 @@
+  #centered
+        {
+             -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+             border-radius: 10px;
+            border-style: outset;
+            border-color: #08088A;
+            border-width: 2px;
+            width: 1000px; /* set to desired width in px or percent */
+            height: 1045px;
+            text-align: left; /* optionally you could use "justified" */ /* Changing this value will add lines around the centered area */
+            padding: 0;
+            margin: 0 auto;
+            background-image: url('/GestionIntegral/Imagenes/bg-Fondo.jpg');
+            background-repeat: no-repeat;
+        }
+        #Encabezado
+        {
+            width: 925px; /* set to desired width in px or percent */
+            height: 170px;
+            padding: 0px;
+            margin: 0px 17px 0 17px;
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+             border-radius: 10px;
+             border: 2px solid;
+             border-color:#2E64FE;
+          /*  background-image: url('/GestionIntegral/Imagenes/header32.png');
+            background-repeat: no-repeat;*/
+        }
+        
+        #menu
+        {
+            width: 930px; /* set to desired width in px or percent */
+            height: 38px;
+            text-align: left; /* optionally you could use "justified" */ /* Changing this value will add lines around the centered area */
+            padding: 0 0 0 0;
+            margin: 0px 17px 0 17px;
+            background-image: url('/GestionIntegral/Imagenes/header-menu2.png');
+            background-repeat: no-repeat;
+            vertical-align: middle;
+        }
+        
+        #Cuerpo
+        {
+            width: 960px; /* set to desired width in px or percent */
+            height: 650px;
+            text-align: left; /* optionally you could use "justified" */ /* Changing this value will add lines around the centered area */
+            padding: 0 0 0 0;
+            margin: 0 auto 0 0;
+          /*   background-image: url('/GestionIntegral/Imagenes/bg-dinamico-tabla-p2.png');
+            background-repeat: repeat;*/
+        }
+        #CuerpoAbajo
+        {
+            width: 960px; /* set to desired width in px or percent */
+            height: 51px;
+            text-align: left; /* optionally you could use "justified" */ /* Changing this value will add lines around the centered area */
+            padding: 0 0 0 0;
+            margin: 0 auto 0 0;
+            background-image: url('/GestionIntegral/Imagenes/inf-tabla-p2.png');
+            background-repeat: no-repeat;
+        }
+        
+        #pie
+        {
+            width: 960px; /* set to desired width in px or percent */
+            height: 100px;
+            text-align: left; /* optionally you could use "justified" */ /* Changing this value will add lines around the centered area */
+            padding: 0 0 0 0;
+            margin: 0 auto 0 0;
+            
+        }
+        
+        #Categorias
+        {
+            width: 181px; /* set to desired width in px or percent */
+            height: 500px;
+            text-align: left; /* optionally you could use "justified" */ /* Changing this value will add lines around the centered area */
+            padding: 0 0 0 0;
+            margin: 0 auto 0 0;
+            background-image: url('/GestionIntegral/Imagenes/bg-dinamico2.png');
+            background-repeat: repeat;
+        }
+        
+        #CategoriasCabeza
+        {
+            width: 181px; /* set to desired width in px or percent */
+            height: 32px;
+            text-align: left; /* optionally you could use "justified" */ /* Changing this value will add lines around the centered area */
+            padding: 0 0 0 0;
+            margin: 0 auto 0 0;
+            background-image: url('/GestionIntegral/Imagenes/header-categorias2.gif');
+            background-repeat: repeat;
+        }
+        
+        
+        
+        #CategoriasPie
+        {
+            width: 181px; /* set to desired width in px or percent */
+            height: 32px;
+            text-align: left; /* optionally you could use "justified" */ /* Changing this value will add lines around the centered area */
+            padding: 0 0 0 0;
+            margin: 0 auto 0 0;
+            background-image: url('/GestionIntegral/Imagenes/inf-segmentos2.png');
+            background-repeat: no-repeat;
+        }
+       
+        
+        #central
+        {
+            width: 700px; /* set to desired width in px or percent */
+            height: 610px;
+            text-align: left; /* optionally you could use "justified" */ /* Changing this value will add lines around the centered area */
+            padding: 0 0 0 0;
+            margin: 0 auto 0 0;
+        }
+        

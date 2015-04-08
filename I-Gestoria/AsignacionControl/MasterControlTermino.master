@@ -1,0 +1,104 @@
+﻿<%@ Master Language="VB" CodeFile="MasterControlTermino.master.vb" Inherits="AsignacionControl_MasterControlTermino" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <script type="text/javascript">
+
+        var delay_abrir_ventana;
+        delay_abrir_ventana = 200;
+
+
+        function Abrir_winCargaImg() {
+                        setTimeout("Abrir_Ventana('winCargaImg')", delay_abrir_ventana);
+                    }
+
+         
+
+
+        ///////////////////////////////////////////////////////////
+
+        function Abrir_Ventana(ventana) {
+            window.radopen(null, ventana);
+        }
+
+        function GetRadWindow() {
+            var oWindow = null;
+
+            try {
+                if (window.radWindow) oWindow = window.radWindow;
+                else if (window.frameElement.radWindow) oWindow = window.frameElement.radWindow;
+
+                return oWindow;
+            } catch (e) {
+            }
+        }
+
+        function Cerrar() {
+            var oWindow = GetRadWindow();
+            oWindow.close();
+        }
+
+        function ConfirmClose(WinName) {
+            var oManager = GetRadWindowManager();
+            var oWnd = oManager.GetWindowByName(WinName);
+            //Find the Close button on the page and attach to the 
+            //onclick event
+            var CloseButton = document.getElementById("CloseButton" + oWnd.Id);
+            CloseButton.onclick = function () {
+                CurrentWinName = oWnd.Id;
+                //radconfirm is non-blocking, so you will need to provide a callback function
+                radconfirm("Are you sure you want to close the window?", confirmCallBackFn);
+            }
+        }
+
+        
+        
+    </script>
+
+</head>
+<body  style="background-color:#999E9B; color:White; font-family:Arial; font-size:smaller">
+
+
+
+<telerik:RadWindowManager ID="RadWindowManager" runat="server">
+                <Windows>
+
+                           <telerik:RadWindow runat="server" ID="winCargaImg" NavigateUrl="~/AsignacionControl/controltermino/CargaImagenGestion.aspx" Width="800px" Height="600px" ReloadOnShow="true" ShowContentDuringLoad="false" Behaviors="Close"  VisibleTitlebar="true" 
+                                          VisibleOnPageLoad="False" IconUrl="~/Imagenes/iconos/laptopIco.png" Modal="true" VisibleStatusbar="false">
+                    </telerik:RadWindow>
+                   <%-- <telerik:RadWindow runat="server" ID="RadWindow1" NavigateUrl="~/gestiondocumen/CargaImagenGestion.aspx" Width="600px" Height="400px" ReloadOnShow="true" ShowContentDuringLoad="false" Behaviors="Close"  VisibleTitlebar="true" 
+                                          VisibleOnPageLoad="False" IconUrl="~/Imagenes/iconos/laptopIco.png" Modal="true" VisibleStatusbar="false">
+                    </telerik:RadWindow>--%>
+
+                   
+                    
+
+                </Windows>
+            </telerik:RadWindowManager>
+
+    <form id="form1" runat="server">
+    <telerik:RadScriptManager ID="RadScriptManager1" runat="server">
+                <Scripts>
+                    <%--Needed for JavaScript IntelliSense in VS2010--%>
+                    <%--For VS2008 replace RadScriptManager with ScriptManager--%>
+                    <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.Core.js" />
+                    <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQuery.js" />
+                    <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQueryInclude.js" />
+                </Scripts>
+            </telerik:RadScriptManager>
+    <div>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+        <telerik:RadAjaxPanel ID="RadAjaxPanel" runat="server" EnableAJAX="true" 
+                                                LoadingPanelID="RadAjaxLoadingPanel" >
+                                            </telerik:RadAjaxPanel>
+    </div>
+    </form>
+</body>
+</html>

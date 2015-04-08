@@ -1,0 +1,1095 @@
+﻿<%@ Master Language="VB" CodeFile="MasterPageGestionOperativa.master.vb" Inherits="MasterPageGestionOperativa" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head id="Head1" runat="server">
+        <title>Gestoria</title>
+        <link rel="stylesheet" type="text/css" href="../css/maquetacion.css" media="all" />
+        <script src="../js/modernizr.custom.66101.js" type="text/javascript"></script>
+        <asp:ContentPlaceHolder ID="head" runat="server">
+        </asp:ContentPlaceHolder>
+
+         <%--Script para las ventanas emergentes modales --%>
+    <script type="text/javascript">
+
+        var delay_abrir_ventana;
+        delay_abrir_ventana = 200;
+
+
+        function Abrir_winDetalleSeguimientoGestor() {
+            setTimeout("Abrir_Ventana('winDetalleSeguimientoGestor')", delay_abrir_ventana);
+        }
+
+        function Abrir_winDetalleSeguimientoLlamada() {
+            setTimeout("Abrir_Ventana('winDetalleSeguimientoLlamada')", delay_abrir_ventana);
+        }
+
+        function Abrir_winSegACita() {
+            setTimeout("Abrir_Ventana('winSegACita')", delay_abrir_ventana);
+        }
+
+        function Abrir_winSegDCita() {
+            setTimeout("Abrir_Ventana('winSegDCita')", delay_abrir_ventana);
+        }
+
+        function Abrir_winSegTramite() {
+            setTimeout("Abrir_Ventana('winSegTramite')", delay_abrir_ventana);
+        }
+
+        function Abrir_winSegEnvDoc() {
+            setTimeout("Abrir_Ventana('winSegEnvioDoc')", delay_abrir_ventana);
+        }
+
+        function Abrir_winDetalleGestor() {
+            setTimeout("Abrir_Ventana('winDetalleGestor')", delay_abrir_ventana);
+        }
+
+        function Abrir_winDetalleUsuario() {
+            setTimeout("Abrir_Ventana('winDetalleUsuario')", delay_abrir_ventana);
+        }
+
+
+        function Abrir_winPrimerContactoGestor() {
+            setTimeout("Abrir_Ventana('winPrimerCg')", delay_abrir_ventana);
+
+        }
+
+        function Abrir_winSeguimiento() {
+            setTimeout("Abrir_Ventana('winSeguimiento')", delay_abrir_ventana);
+        }
+
+        function Abrir_winRecepcion() {
+            setTimeout("Abrir_Ventana('winRecepcion')", delay_abrir_ventana);
+        }
+
+        function Abrir_winVerificacionExp() {
+            setTimeout("Abrir_Ventana('winVerificacionExp')", delay_abrir_ventana);
+        }
+
+        function Abrir_winDigitalizacion() {
+            setTimeout("Abrir_Ventana('winDigitalizacion')", delay_abrir_ventana);
+        }
+        function Abrir_winEntrega() {
+            setTimeout("Abrir_Ventana('winEntrega')", delay_abrir_ventana);
+        }
+
+        function Abrir_winDetalleRecepcion() {
+            setTimeout("Abrir_Ventana('winDetalleRecepcion')", delay_abrir_ventana);
+        }
+
+        function Abrir_winDetalleVerificacion() {
+            setTimeout("Abrir_Ventana('winDetalleVerificacion')", delay_abrir_ventana);
+        }
+
+        function Abrir_winDetalleDigitalizacion() {
+            setTimeout("Abrir_Ventana('winDetalleDigitalizacion')", delay_abrir_ventana);
+        }
+
+        function Abrir_winPagoEspecial() {
+            setTimeout("Abrir_Ventana('winPagoEspecial')", delay_abrir_ventana);
+        }
+
+        function Abrir_winSegDetRec() {
+            setTimeout("Abrir_Ventana('winSegDetRec')", delay_abrir_ventana);
+        }
+
+
+
+        ///////////////////////////////////////////////////////////
+
+        function Abrir_Ventana(ventana) {
+            window.radopen(null, ventana);
+        }
+
+        function GetRadWindow() {
+            var oWindow = null;
+
+            try {
+                if (window.radWindow) oWindow = window.radWindow;
+                else if (window.frameElement.radWindow) oWindow = window.frameElement.radWindow;
+
+                return oWindow;
+            } catch (e) {
+            }
+        }
+
+        function Cerrar() {
+            var oWindow = GetRadWindow();
+            oWindow.close();
+        }
+
+        function ConfirmClose(WinName) {
+            var oManager = GetRadWindowManager();
+            var oWnd = oManager.GetWindowByName(WinName);
+            //Find the Close button on the page and attach to the 
+            //onclick event
+            var CloseButton = document.getElementById("CloseButton" + oWnd.Id);
+            CloseButton.onclick = function () {
+                CurrentWinName = oWnd.Id;
+                //radconfirm is non-blocking, so you will need to provide a callback function
+                radconfirm("Are you sure you want to close the window?", confirmCallBackFn);
+            }
+        }
+
+        
+        
+    </script>
+
+        <style type="text/css">
+            html, body, form
+            {
+            height:99.96%;
+            width:99.98%;
+            padding: 0px;
+            overflow: visible !important;
+                margin-left: 0px;
+                margin-top: 0px;
+                margin-bottom: 0px;
+            }
+    
+            .table  
+            {
+            display: table; 
+            width: 100%;
+            
+            background-color:#3F7EB2;
+            } 
+     
+            .cell 
+            { 
+            display: table-cell; 
+            vertical-align: top;
+            }
+     
+            .row
+            { 
+            display: table-row; 
+            vertical-align: middle; 
+            }
+     
+            .table1  
+            {
+            display: table; 
+            width: 100%;
+            background-color:#3F7EB2;
+            } 
+     
+            .cell1 
+            { 
+            display: table-cell; 
+            }
+     
+            .row1
+            { 
+            display: table-row; 
+            }
+     
+     
+            .style28
+            {
+                width: 1%;
+            }
+            .style29
+            {
+                background-color: #E6E7E8;
+                font-family: Helvetica;
+                font-size: 8px;
+                font-weight: lighter;
+                color: #333333;
+                width: 2%;
+            }
+            .style30
+            {
+                width: 2%;
+            }
+            .style38
+            {
+                width: 29px;
+            }
+            .style39
+            {
+                background-color: #E6E7E8;
+                font-family: Helvetica;
+                font-size: 8px;
+                font-weight: lighter;
+                color: #333333;
+                width: 29px;
+            }
+            .style40
+            {
+                background-color: #D1D1D1;
+                font-family: Helvetica;
+                font-size: 8px;
+                font-weight: lighter;
+                color: #333333;
+                width: 29px;
+            }
+            .style41
+            {
+                width: 27px;
+            }
+            .style42
+            {
+                background-color: #E6E7E8;
+                font-family: Helvetica;
+                font-size: 8px;
+                font-weight: lighter;
+                color: #333333;
+                width: 27px;
+            }
+            .style50
+            {
+                background-color: #E6E7E8;
+                font-family: Helvetica;
+                font-size: 8px;
+                font-weight: lighter;
+                color: #333333;
+                width: 280px;
+            }
+            .style51
+            {
+                background-color: #E6E7E8;
+                font-family: Helvetica;
+                font-size: 10px;
+                font-weight: lighter;
+                color: #333333;
+                width: 280px;
+            }
+            .style59
+            {
+                background-color: #E6E7E8;
+                font-family: Helvetica;
+                font-size: 8px;
+                font-weight: lighter;
+                color: #333333;
+                width: 285px;
+            }
+            .style61
+            {
+                height: 30px;
+            }
+            .style62
+            {
+                background-color: #333333;
+                font-family: Arial;
+                font-size: 14px;
+                font-weight: bold;
+                color: #DFE1E4;
+                margin: auto;
+                height: 30px;
+            }
+            .style63
+            {
+                width: 1%;
+                height: 30px;
+            }
+     
+     
+            .style67
+            {
+                display: table-cell;
+                vertical-align: top;
+                width: 282px;
+            }
+            .style70
+            {
+                display: table-cell;
+                vertical-align: top;
+                width: 294px;
+            }
+            .style71
+            {
+                background-color: #E6E7E8;
+                font-family: Arial;
+                font-size: 10px;
+                font-weight: normal;
+                color: Gray;
+                width: 285px;
+            }
+            .style72
+            {
+                background-color: #E6E7E8;
+                font-family: Arial;
+                font-size: 13px;
+                font-weight: bold;
+                color: #333333;
+                width: 285px;
+            }
+            .style73
+            {
+                background-color: #D1D1D1;
+                font-family: Arial;
+                font-size: 10px;
+                font-weight: normal;
+                color: Gray;
+                width: 285px;
+            }
+            .style74
+            {
+                background-color: #D1D1D1;
+                font-family: Arial;
+                font-size: 13px;
+                font-weight: bold;
+                color: #333333;
+                width: 285px;
+            }
+            .style75
+            {
+                background-color: #D1D1D1;
+                font-family: Helvetica;
+                font-size: 8px;
+                font-weight: lighter;
+                color: #333333;
+                width: 285px;
+            }
+            .style76
+            {
+                display: table-cell;
+                vertical-align: top;
+                width: 285px;
+            }
+            .style79
+            {
+                background-color: #E6E7E8;
+                font-family: Arial;
+                font-size: 10px;
+                font-weight: normal;
+                color: Gray;
+                width: 282px;
+            }
+            .style80
+            {
+                background-color: #E6E7E8;
+                font-family: Arial;
+                font-size: 13px;
+                font-weight: bold;
+                color: #333333;
+                width: 282px;
+            }
+            .style81
+            {
+                background-color: #E6E7E8;
+                font-family: Helvetica;
+                font-size: 8px;
+                font-weight: lighter;
+                color: #333333;
+                width: 282px;
+            }
+            .style82
+            {
+                background-color: #E6E7E8;
+                font-family: Arial;
+                font-size: 10px;
+                font-weight: normal;
+                color: Gray;
+                width: 294px;
+            }
+            .style83
+            {
+                background-color: #E6E7E8;
+                font-family: Arial;
+                font-size: 13px;
+                font-weight: bold;
+                color: #333333;
+                width: 294px;
+            }
+            .style84
+            {
+                height: 30px;
+                width: 12px;
+            }
+            .style86
+            {
+                width: 12px;
+            }
+     
+     
+            </style>
+
+        <link href="HojaEstilos/StyleSheet3H.css" rel="stylesheet" type="text/css" />
+        <link href="HojaEstilos/Cintillo.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <form id="form1" runat="server" style=" background-color:#8EC640 ">
+            <telerik:RadScriptManager ID="RadScriptManager1" runat="server">
+                <Scripts>
+                    <%--Needed for JavaScript IntelliSense in VS2010--%>
+                    <%--For VS2008 replace RadScriptManager with ScriptManager--%>
+                    <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.Core.js" />
+                    <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQuery.js" />
+                    <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQueryInclude.js" />
+                </Scripts>
+            </telerik:RadScriptManager>
+
+              <%--Needed for JavaScript IntelliSense in VS2010--%>
+            <telerik:RadWindowManager ID="RadWindowManager" runat="server">
+                <Windows>
+                    <telerik:RadWindow runat="server" ID="winSegACita" NavigateUrl="~/AsignacionControl/SegACita.aspx" Width="800px" Height="600px" ReloadOnShow="true" ShowContentDuringLoad="false" Behaviors="Close"  VisibleTitlebar="true" 
+                                          VisibleOnPageLoad="False" IconUrl="~/Imagenes/iconos/laptopIco.png" Modal="true" VisibleStatusbar="false">
+                    </telerik:RadWindow>
+
+                    <telerik:RadWindow runat="server" ID="winSegTramite" NavigateUrl="~/AsignacionControl/SeguimientoGestor.aspx" ReloadOnShow="true" ShowContentDuringLoad="false" Width="800px" Height="600px" Behaviors="Close"  VisibleTitlebar="true" 
+                                          VisibleOnPageLoad="False" IconUrl="~/Imagenes/iconos/laptopIco.png" Modal="true" VisibleStatusbar="false">
+                    </telerik:RadWindow>
+
+                     <telerik:RadWindow runat="server" ID="winSegEnvioDoc" NavigateUrl="~/AsignacionControl/SeguimientoEnvioDocumentos.aspx" ReloadOnShow="true" ShowContentDuringLoad="false"  Width="800px" Height="600px" Behaviors="Close"  VisibleTitlebar="true" 
+                                          VisibleOnPageLoad="False" IconUrl="~/Imagenes/iconos/laptopIco.png" Modal="true" VisibleStatusbar="false">
+                    </telerik:RadWindow>
+
+                     <telerik:RadWindow runat="server" ID="winSegDCita" NavigateUrl="~/AsignacionControl/SeguimientoGestor.aspx" ReloadOnShow="true" ShowContentDuringLoad="false" Width="800px" Height="600px" Behaviors="Close"  VisibleTitlebar="true" 
+                                          VisibleOnPageLoad="False" IconUrl="~/Imagenes/iconos/laptopIco.png" Modal="true" VisibleStatusbar="false">
+                    </telerik:RadWindow>
+
+                    <telerik:RadWindow runat="server" ID="winSeguimiento" NavigateUrl="~/AsignacionControl/PrimerContacto.aspx" ReloadOnShow="true" ShowContentDuringLoad="false" Width="800px" Height="600px" Behaviors="Close"  VisibleTitlebar="true" 
+                                          VisibleOnPageLoad="False" IconUrl="~/Imagenes/iconos/laptopIco.png" Modal="true" VisibleStatusbar="false">
+                    </telerik:RadWindow>
+
+                    <telerik:RadWindow runat="server" ID="winPrimerCg" NavigateUrl="~/AsignacionControl/PrimerContactoGestor.aspx" ReloadOnShow="true" ShowContentDuringLoad="false" Title='Contacto a Gestor' Font-Size="Medium"  Modal="true" Width="800px" Height="600px" VisibleTitlebar="true" Behaviors="Close" VisibleStatusbar="False">
+                    </telerik:RadWindow>
+                   
+                    <telerik:RadWindow runat="server" ID="winDetalleUsuario" NavigateUrl="~/AsignacionControl/DetalleCliente.aspx" Title='Detalle de intentos de Llamada con el Cliente' Font-Size="Medium" Modal="true" ReloadOnShow="true" ShowContentDuringLoad="false" Width="800px" Height="600px" VisibleTitlebar="true" Behaviors="Close" VisibleStatusbar="False">
+                    </telerik:RadWindow>
+
+                     <telerik:RadWindow runat="server" ID="winDetalleGestor" NavigateUrl="~/AsignacionControl/DetalleGestor.aspx" Title='Detalle de intentos de Llamada' Font-Size="Medium"  
+                     ReloadOnShow="true" ShowContentDuringLoad="false" Modal="true" Width="800px" Height="600px" VisibleTitlebar="true" Behaviors="Close" VisibleStatusbar="False">
+                    </telerik:RadWindow>
+
+		            <telerik:RadWindow runat="server" ID="winDetalleSeguimientoGestor" NavigateUrl="~/AsignacionControl/DetalleSeguimientoSigLlamada.aspx" Width="800px" Height="600px" ReloadOnShow="true" ShowContentDuringLoad="false" Behaviors="Close"  VisibleTitlebar="true" 
+                                          VisibleOnPageLoad="False" IconUrl="~/Imagenes/iconos/laptopIco.png" Modal="true" VisibleStatusbar="false">
+                    </telerik:RadWindow>
+
+                    <telerik:RadWindow runat="server" ID="winDetalleSeguimientoLlamada" NavigateUrl="~/AsignacionControl/DetalleSeguimientoDocumentos.aspx" Width="800px" Height="600px" ReloadOnShow="true" ShowContentDuringLoad="false" Behaviors="Close"  VisibleTitlebar="true" 
+                                          VisibleOnPageLoad="False" IconUrl="~/Imagenes/iconos/laptopIco.png" Modal="true" VisibleStatusbar="false">
+                    </telerik:RadWindow>
+
+                    <telerik:RadWindow runat="server" ID="winRecepcion" NavigateUrl="~/AsignacionControl/ControlTermino/RecepcionExpedientesCT.aspx" Width="800px" Height="600px" ReloadOnShow="true" ShowContentDuringLoad="false" Behaviors="Close"  VisibleTitlebar="true" 
+                                          VisibleOnPageLoad="False" IconUrl="~/Imagenes/iconos/laptopIco.png" Modal="true" VisibleStatusbar="false">
+                    </telerik:RadWindow>
+
+                    <telerik:RadWindow runat="server" ID="winVerificacionExp" NavigateUrl="~/AsignacionControl/ControlTermino/VerificacionExpedientesCT.aspx" Width="800px" Height="600px" ReloadOnShow="true" ShowContentDuringLoad="false" Behaviors="Close"  VisibleTitlebar="true" 
+                                          VisibleOnPageLoad="False" IconUrl="~/Imagenes/iconos/laptopIco.png" Modal="true" VisibleStatusbar="false">
+                    </telerik:RadWindow>
+
+                    <telerik:RadWindow runat="server" ID="winDigitalizacion" NavigateUrl="~/AsignacionControl/ControlTermino/EnviarImagenesGestionCT.aspx" Width="800px" Height="600px" ReloadOnShow="true" ShowContentDuringLoad="false" Behaviors="Close"  VisibleTitlebar="true" 
+                                          VisibleOnPageLoad="False" IconUrl="~/Imagenes/iconos/laptopIco.png" Modal="true" VisibleStatusbar="false">
+                    </telerik:RadWindow>
+
+                    <telerik:RadWindow runat="server" ID="winEntrega" NavigateUrl="~/AsignacionControl/ControlTermino/Default3CT.aspx" Width="800px" Height="600px" ReloadOnShow="true" ShowContentDuringLoad="false" Behaviors="Close"  VisibleTitlebar="true" 
+                                          VisibleOnPageLoad="False" IconUrl="~/Imagenes/iconos/laptopIco.png" Modal="true" VisibleStatusbar="false">
+                    </telerik:RadWindow>
+
+                    <telerik:RadWindow runat="server" ID="winDetalleRecepcion" NavigateUrl="~/AsignacionControl/ControlTermino/DetalleRecepcion.aspx" Width="800px" Height="600px" ReloadOnShow="true" ShowContentDuringLoad="false" Behaviors="Close"  VisibleTitlebar="true" 
+                                          VisibleOnPageLoad="False" IconUrl="~/Imagenes/iconos/laptopIco.png" Modal="true" VisibleStatusbar="false">
+                    </telerik:RadWindow>
+
+                    <telerik:RadWindow runat="server" ID="winDetalleVerificacion" NavigateUrl="~/AsignacionControl/ControlTermino/DetalleVerificacion.aspx" Width="800px" Height="600px" ReloadOnShow="true" ShowContentDuringLoad="false" Behaviors="Close"  VisibleTitlebar="true" 
+                                          VisibleOnPageLoad="False" IconUrl="~/Imagenes/iconos/laptopIco.png" Modal="true" VisibleStatusbar="false">
+                    </telerik:RadWindow>
+
+                    <telerik:RadWindow runat="server" ID="winDetalleDigitalizacion" NavigateUrl="~/AsignacionControl/ControlTermino/DetalleDigitalizacion.aspx" Width="800px" Height="600px" ReloadOnShow="true" ShowContentDuringLoad="false" Behaviors="Close"  VisibleTitlebar="true" 
+                                          VisibleOnPageLoad="False" IconUrl="~/Imagenes/iconos/laptopIco.png" Modal="true" VisibleStatusbar="false">
+                    </telerik:RadWindow>
+
+                    <telerik:RadWindow runat="server" ID="winDetalleEntrega" NavigateUrl="~/AsignacionControl/ControlTermino/DetalleEntrega.aspx" Width="800px" Height="600px" ReloadOnShow="true" ShowContentDuringLoad="false" Behaviors="Close"  VisibleTitlebar="true" 
+                                          VisibleOnPageLoad="False" IconUrl="~/Imagenes/iconos/laptopIco.png" Modal="true" VisibleStatusbar="false">
+                    </telerik:RadWindow>
+
+                    <telerik:RadWindow runat="server" ID="winPagoEspecial" NavigateUrl="~/PagosGastosGestor/PagoEspecial.aspx" Width="700" Height="250" ReloadOnShow="true" ShowContentDuringLoad="false" Behaviors="Close"  VisibleTitlebar="true" 
+                                          VisibleOnPageLoad="False" IconUrl="~/Imagenes/iconos/laptopIco.png" Modal="true" VisibleStatusbar="false">
+                    </telerik:RadWindow>
+
+                    <telerik:RadWindow runat="server" ID="winSegDetRec" NavigateUrl="~/AsignacionControl/DetalleRechazoS.aspx" Width="700" Height="250" ReloadOnShow="true" ShowContentDuringLoad="false" Behaviors="Close"  VisibleTitlebar="true" 
+                                          VisibleOnPageLoad="False" IconUrl="~/Imagenes/iconos/laptopIco.png" Modal="true" VisibleStatusbar="false">
+                    </telerik:RadWindow>
+
+                </Windows>
+            </telerik:RadWindowManager>
+
+            <div id="ParentDivElement" style="height: 100%;">
+                <telerik:RadSplitter ID="MainSplitter" runat="server" Height="100%" Width="100%"
+                                     Orientation="Horizontal" Skin="Outlook" SplitBarsSize="12">
+                    <telerik:RadPane ID="TopPane" runat="server" Height="43" MinHeight="40" MaxHeight="60"
+                                     Scrolling="none">
+                        <table class="table1" style=" background-color:#8EC640;">
+                            <tr class="row1" style=" background-color: #8EC640;">
+                                <td class="cell1" style=" background-color: #8EC640; width: 2%"></td>
+                                <td class="cell1" style=" background-color: #8EC640; width: 2%">
+                                    <asp:Label ID="Label2" runat="server" CssClass="Titulos" ForeColor="White" 
+                                               Text="No. de Gestión:" Width="170px"/>
+                                </td>
+                                <td  style=" background-color: #8EC640;">
+                                    <telerik:RadNumericTextBox ID="txtNoGestion" runat="server" AutoPostBack="True" CssClass="TxtBox"
+                                                               EmptyMessage="Obligatorio"  MinValue="0" Width="150px">
+                                        <NumberFormat ZeroPattern="n" DecimalDigits="0" GroupSeparator=""></NumberFormat>
+                                        <EmptyMessageStyle BackColor="White" ForeColor="White" />
+                                    </telerik:RadNumericTextBox>
+                                    
+                                    <br />
+                                    
+                                </td>
+                                <td>
+                                    <asp:Label ID="Label28" runat="server" CssClass="letrasdetodo" 
+                                        Text="No. de Control:"></asp:Label>
+                                </td>
+                                <td>
+                                    <telerik:RadTextBox ID="TxtControl" Runat="server" CssClass="TxtBox" AutoPostBack="true">
+                                    </telerik:RadTextBox>
+                                </td>
+                                <td style="font-family:Helvetica;text-align:right; font-size:16px;color:White;font-weight:lighter;width:59%">
+                                    
+                                    <asp:Label ID="lblPrincipal" runat="server" 
+                                        style="font-weight: 700; font-style: italic"></asp:Label>
+                                    </td>
+                               
+                            </tr>
+                            
+                            <tr class="row1" style=" background-color: #8EC640; height: 5px;">
+
+                                <td class="cell1">
+                                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+                                                       ConnectionString="<%$ ConnectionStrings:ConnStringSQL %>" 
+                                                       
+                                                       SelectCommand="SELECT * FROM [tbl_Menus] WHERE ([nivel] LIKE '%' + @nivel + '%')">
+                                        <SelectParameters>
+                                            <asp:SessionParameter DefaultValue="1" Name="nivel" SessionField="nivel" 
+                                                                  Type="String" />
+                                        </SelectParameters>
+                                    </asp:SqlDataSource>
+                                    <telerik:RadNotification ID="notificacion0" runat="server" CloseButtonToolTip="Cerrar"
+                                                             Height="71%" Skin="Web20" BorderStyle="Outset" BorderWidth="2px" EnableRoundedCorners="True"
+                                                             EnableShadow="True" Position="Center">
+                                    </telerik:RadNotification>
+                                </td>
+                            </tr>
+                        </table>
+                        &nbsp;
+                    </telerik:RadPane>
+                    <telerik:RadPane ID="TablePane" runat="server" Collapsed="true" MinHeight="350" 
+                        MaxHeight="350" Scrolling="none" Height="350px">
+                        <table style="background-color:Gray" rules="none" >
+                                 <tr>
+                                    <td class="style84" >
+                                        </td>
+                                    <td class="style62" colspan="2" align="center" 
+                                         >
+                                        CONTRATO / UBICACION</td>
+                                    <td class="style61" >
+                                        </td>
+                                    <td class="style62" colspan="2" align="center" 
+                                         >
+                                        SERVICIO</td>
+                                    <td class="style61" >
+                                        </td>
+                                    <td class="style62" colspan="2" align="center" 
+                                         >
+                                        CLIENTE</td>
+                                    <td class="style61" >
+                                        </td>
+                                    <td class="style62" colspan="2" align="center" 
+                                         >
+                                        GESTOR</td>
+                                    <td class="style61" >
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="style86" >
+                                        &nbsp;</td>
+                                    <td class="style38" rowspan="2">
+                                        <telerik:RadBinaryImage ID="RadBinaryImage17" runat="server" 
+                                            ImageUrl="~/Imagenes/iconos/cintillo/icon_Contrato.png" />
+                                    </td>
+                                    <td class="style71" >
+                                        &nbsp; Nombre del Contrato</td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style41" rowspan="2" >
+                                        <telerik:RadBinaryImage ID="RadBinaryImage16" runat="server" 
+                                            ImageUrl="~/Imagenes/iconos/cintillo/icon_Servicio.png" />
+                                    </td>
+                                    <td class="style82" >
+                                        &nbsp; Tipo deServicio</td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td  
+                                        class="style30" rowspan="2">
+                                        <telerik:RadBinaryImage ID="RadBinaryImage15" runat="server" 
+                                            ImageUrl="~/Imagenes/iconos/cintillo/icon_Cliente.png" />
+                                    </td>
+                                    <td class="style79" >
+                                        &nbsp; Reporto</td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style30" rowspan="2" >
+                                        <telerik:RadBinaryImage ID="RadBinaryImage14" runat="server" 
+                                            ImageUrl="~/Imagenes/iconos/cintillo/icon_Gestor.png" />
+                                    </td>
+                                    <td class="style79" >
+                                        &nbsp; Nombre de Gestor Asignado</td>
+                                    <td >
+                                        &nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="style86" >
+                                        &nbsp;</td>
+                                    <td class="style72" >
+                                        &nbsp;
+                                        <asp:Label ID="lblAseguradora" runat="server" Text=""></asp:Label>
+                                    </td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style83">
+                                        &nbsp;
+                                        <asp:Label ID="lblTipos" runat="server" Text=""></asp:Label>
+                                    </td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style80" >
+                                        &nbsp;
+                                        <asp:Label ID="lblReporto" runat="server" Text=""></asp:Label>
+                                    </td>
+                                    <td align="left" 
+                                        >
+                                        &nbsp;</td>
+                                    <td class="style83">
+                                        <asp:Label ID="lblGesCintillo" runat="server"></asp:Label>
+                                    </td>
+                                    <td align="left">
+                                        &nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="style86" >
+                                        &nbsp;</td>
+                                    <td class="style39" >
+                                        &nbsp;</td>
+                                    <td class="style59" >
+                                    </td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style42" >
+                                        &nbsp;</td>
+                                    <td class="style82" >
+                                        &nbsp; Fecha de Activacion</td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style29" >
+                                        &nbsp;</td>
+                                    <td class="style79" >
+                                        &nbsp; Tel de Quien Reporto</td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style29" />
+                                    <td class="style79" >
+                                        &nbsp; Fotografia de Gestor</td>
+                                    <td >
+                                        &nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="style86" >
+                                        &nbsp;</td>
+                                    <td class="style38" rowspan="2">
+                                        <telerik:RadBinaryImage ID="RadBinaryImage4" runat="server" 
+                                            ImageUrl="~/Imagenes/iconos/cintillo/icon_Ubicacion.png" />
+                                    </td>
+                                    <td class="style73" >
+                                        &nbsp; Estado</td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style42" >
+                                        &nbsp;</td>
+                                    <td class="style83" >
+                                        &nbsp;
+                                        <asp:Label ID="lblfReporte" runat="server"></asp:Label>
+                                    </td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style29" >
+                                        &nbsp;</td>
+                                    <td class="style80" >
+                                        &nbsp;
+                                        <asp:Label ID="lblTelefono" runat="server"></asp:Label>
+                                    </td>
+                                    <td 
+                                        >
+                                        &nbsp;</td>
+                                    <td class="style29" >
+                                        &nbsp;</td>
+                                    <td class="LabelsCintillo" >
+                                        &nbsp;</td>
+                                    <td>
+                                        &nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="style86" >
+                                        &nbsp;</td>
+                                    <td class="style74" >
+                                        &nbsp;
+                                        <asp:Label ID="lblEstado" runat="server" Text=""></asp:Label>
+                                    </td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style42" >
+                                        &nbsp;</td>
+                                    <td class="style82" >
+                                        &nbsp; Poliza</td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style29" >
+                                        &nbsp;</td>
+                                    <td class="style79" >
+                                        &nbsp; E-mail de Asegurado</td>
+                                    <td 
+                                        >
+                                        &nbsp;</td>
+                                    <td class="style29" >
+                                        &nbsp;</td>
+                                    <td class="style79" >
+                                        &nbsp; Fecha de Asignacion</td>
+                                    <td>
+                                        &nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="style86" >
+                                        &nbsp;</td>
+                                    <td class="style40" >
+                                        &nbsp;</td>
+                                    <td class="style73" >
+                                        &nbsp; Municipio</td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style42" >
+                                        &nbsp;</td>
+                                    <td class="style83" >
+                                        &nbsp;
+                                        <asp:Label ID="lblnoPoliza" runat="server"></asp:Label>
+                                    </td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style29" >
+                                        &nbsp;</td>
+                                    <td class="style80" >
+                                        &nbsp;
+                                        <asp:Label ID="lblMail" runat="server" Text=""></asp:Label>
+                                    </td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style29" >
+                                        &nbsp;</td>
+                                    <td class="style83" >
+                                        <asp:Label ID="lblFechaAsigCintillo" runat="server"></asp:Label>
+                                    </td>
+                                    <td >
+                                        &nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="style86" >
+                                        &nbsp;</td>
+                                    <td class="style40" >
+                                        &nbsp;</td>
+                                    <td class="style74" >
+                                        &nbsp;
+                                        <asp:Label ID="lblMunicipio" runat="server" Text=""></asp:Label>
+                                    </td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style42" >
+                                        &nbsp;</td>
+                                    <td class="style82" >
+                                        &nbsp; Status</td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style29" >
+                                        &nbsp;</td>
+                                    <td class="style79" >
+                                        &nbsp; Asegurado, o Razon Social</td>
+                                    <td 
+                                        >
+                                        &nbsp;</td>
+                                    <td class="style29" >
+                                        &nbsp;</td>
+                                    <td class="style51" >
+                                        &nbsp;</td>
+                                    <td>
+                                        &nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="style86" >
+                                        &nbsp;</td>
+                                    <td class="style40" >
+                                        &nbsp;</td>
+                                    <td class="style73" >
+                                        &nbsp; Regional</td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style42" >
+                                        &nbsp;</td>
+                                    <td class="style83" >
+                                        &nbsp;
+                                        <asp:Label ID="lblEstatus" runat="server"></asp:Label>
+                                    </td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style29" >
+                                        &nbsp;</td>
+                                    <td class="style80" >
+                                        &nbsp;
+                                        <asp:Label ID="lblAsegurado" runat="server" Text=""></asp:Label>
+                                    </td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style29" >
+                                        &nbsp;</td>
+                                    <td class="style50" >
+                                        &nbsp;</td>
+                                    <td >
+                                        &nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="style86" >
+                                        &nbsp;</td>
+                                    <td class="style40" >
+                                        &nbsp;</td>
+                                    <td class="style74" >
+                                        &nbsp;
+                                        <asp:Label ID="lblRegional" runat="server"></asp:Label>
+                                    </td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style42" >
+                                        &nbsp;</td>
+                                    <td class="style82" >
+                                        &nbsp; Etapa de Servicio</td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style29" >
+                                        &nbsp;</td>
+                                    <td class="style79" >
+                                        &nbsp; Tel Asegurado</td>
+                                    <td 
+                                        >
+                                        &nbsp;</td>
+                                    <td class="style29" >
+                                        &nbsp;</td>
+                                    <td class="style50" >
+                                        &nbsp;</td>
+                                    <td>
+                                        &nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="style86" >
+                                        &nbsp;</td>
+                                    <td class="style40" >
+                                        &nbsp;</td>
+                                    <td class="style75" >
+                                        &nbsp;</td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style42" >
+                                        &nbsp;</td>
+                                    <td class="style83" >
+                                        &nbsp; &nbsp;<asp:Label ID="lblEtapasCintillo" runat="server"></asp:Label>
+                                    </td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style29" >
+                                        &nbsp;</td>
+                                    <td class="style80" >
+                                        &nbsp;
+                                        <asp:Label ID="lblTel2" runat="server"></asp:Label>
+                                    </td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style29" >
+                                        &nbsp;</td>
+                                    <td class="style50" >
+                                        &nbsp;</td>
+                                    <td >
+                                        &nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="style86" >
+                                        &nbsp;</td>
+                                    <td class="style40" >
+                                        &nbsp;</td>
+                                    <td class="style75" >
+                                        &nbsp;</td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style42" >
+                                        &nbsp;</td>
+                                    <td class="style82" >
+                                        &nbsp; Marca Vehiculo</td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style29" >
+                                        &nbsp;</td>
+                                    <td class="style80" >
+                                        &nbsp;</td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style29" >
+                                        &nbsp;</td>
+                                    <td class="style50" >
+                                        &nbsp;</td>
+                                    <td >
+                                        &nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="style86" >
+                                        &nbsp;</td>
+                                    <td class="style40" >
+                                        &nbsp;</td>
+                                    <td class="style75" >
+                                        &nbsp;</td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style42" >
+                                        &nbsp;</td>
+                                    <td class="style83" >
+                                        &nbsp; &nbsp;<asp:Label ID="lblMarcaCintillo" runat="server"></asp:Label>
+                                    </td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style29" >
+                                        &nbsp;</td>
+                                    <td class="style81" >
+                                        &nbsp;</td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style29" >
+                                        &nbsp;</td>
+                                    <td class="style50" >
+                                        &nbsp;</td>
+                                    <td >
+                                        &nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="style86" >
+                                        &nbsp;</td>
+                                    <td class="style40" >
+                                        &nbsp;</td>
+                                    <td class="style75" >
+                                        &nbsp;</td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style42" >
+                                        &nbsp;</td>
+                                    <td class="style82" >
+                                        &nbsp; Submarca Vehiculo</td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style29" >
+                                        &nbsp;</td>
+                                    <td class="style81" >
+                                        &nbsp;</td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style29" >
+                                        &nbsp;</td>
+                                    <td class="style50" >
+                                        &nbsp;</td>
+                                    <td >
+                                        &nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="style86" >
+                                        &nbsp;</td>
+                                    <td class="style40" >
+                                        &nbsp;</td>
+                                    <td class="style75" >
+                                        &nbsp;</td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style42" >
+                                        &nbsp;</td>
+                                    <td class="style83" >
+                                        <asp:Label ID="lblSubMarCintillo" runat="server"></asp:Label>
+                                    </td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style29" >
+                                    </td>
+                                    <td class="style81" >
+                                        &nbsp;</td>
+                                    <td >
+                                        &nbsp;</td>
+                                    <td class="style29" >
+                                        &nbsp;</td>
+                                    <td class="style50" >
+                                        &nbsp;</td>
+                                    <td >
+                                        &nbsp;</td>
+                                </tr>
+                                 <tr>
+                                     <td class="style86">
+                                         &nbsp;</td>
+                                     <td class="cell">
+                                         &nbsp;</td>
+                                     <td class="style76">
+                                         &nbsp;</td>
+                                     <td class="cell">
+                                         &nbsp;</td>
+                                     <td class="cell">
+                                         &nbsp;</td>
+                                     <td class="style70">
+                                         &nbsp;</td>
+                                     <td class="cell">
+                                         &nbsp;</td>
+                                     <td class="cell">
+                                         &nbsp;</td>
+                                     <td class="style67">
+                                         &nbsp;</td>
+                                     <td class="cell">
+                                         &nbsp;</td>
+                                     <td class="cell">
+                                         &nbsp;</td>
+                                     <td class="cell">
+                                         &nbsp;</td>
+                                     <td>
+                                         &nbsp;</td>
+                                 </tr>
+                            </table>
+                    </telerik:RadPane>
+                    <%--<div class="table"><div class="row"> <div class="cell">&nbsp;</div></div></div>--%>
+                    <telerik:RadSplitBar ID="RadsplitbarTop" runat="server" CollapseMode="Forward" />
+                    <telerik:RadPane ID="MainPane" runat="server" Scrolling="none" MinWidth="500" 
+                        BackColor="#8EC640">
+                        <div class="table">
+                            <div class="row" style="height:80%">
+                            <div class="cell" style="background-color: #8EC640">&nbsp;&nbsp;</div>
+                                <div class="cell">
+                                    <telerik:RadSplitter ID="NestedSplitter" runat="server" Skin="Outlook" 
+                                        LiveResize="true" SplitBarsSize="12" BackColor="#C7CCCE">
+                                        <telerik:RadPane ID="LeftPane" runat="server" Width="105" MinWidth="105" MaxWidth="105" BackColor="#8EC640">
+
+                                            <telerik:RadPanelBar ID="RadPanelBar1" runat="server" DataFieldID="id" CssClass="Demo"
+                                                                 DataFieldParentID="parentId" DataNavigateUrlField="url"
+                                                                 DataSourceID="SqlDataSource1" DataTextField="text"
+                                                                 Skin="Forest" Width="81px"
+                                                                 BackColor="#8EC640" BorderColor="#8EC640" BorderStyle="None"
+                                                                 ForeColor="#8EC640" ExpandMode="FullExpandedItem">
+                                                <DataBindings>
+                                                    <telerik:RadPanelItemBinding HoveredImageUrlField="ImagenMenuActiva"
+                                                                                 ImageUrlField="ImagenMenuPasiva" ToolTipField="tooltip" PostBack="False" />
+                                                </DataBindings>
+                                            </telerik:RadPanelBar>
+                                        </telerik:RadPane>
+                                        <telerik:RadSplitBar ID="VerticalSplitBar" runat="server" 
+                                            CollapseMode="Forward" />
+                                        <telerik:RadPane ID="ContentPane" runat="server" BackColor="#979797">
+                                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                            </asp:ContentPlaceHolder>
+                                            <telerik:RadAjaxPanel ID="RadAjaxPanel" runat="server" EnableAJAX="true" 
+                                                LoadingPanelID="RadAjaxLoadingPanel" >
+                                            </telerik:RadAjaxPanel>
+                                        </telerik:RadPane>
+                                    </telerik:RadSplitter>
+                                </div>
+                            </div>
+                        </div>
+                    </telerik:RadPane>
+                </telerik:RadSplitter>
+            </div>
+        </form>
+    </body>
+</html>
+

@@ -1,0 +1,145 @@
+﻿<%@ Page Title="" Page Language="VB" MasterPageFile="~/MasterPageGestionOperativa.master" AutoEventWireup="false" CodeFile="AsignarGestor_Pendiente.aspx.vb" Inherits="AsignacionControl_AsignarGestor_Pendiente" %>
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+
+    <div>
+    <table>
+    <tr>
+    <td style="width:100px;"></td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;"></td>
+    <td style="width:100px;"></td>
+    <td style="width:100px;"></td>
+    <td style="width:100px;"></td>
+    <td style="width:100px;"></td>
+    <td style="width:100px;"></td>
+    <td style="width:100px;"></td>
+    <td style="width:100px;"></td>
+
+    </tr>
+    
+    <tr>
+    <td style="width:100px;">
+        <asp:Label ID="Label29" runat="server" Text="No. Poliza:"></asp:Label>
+        </td>
+    <td style="width:100px;">
+        <telerik:RadTextBox ID="RadtxtPoliza" Runat="server">
+        </telerik:RadTextBox>
+        </td>
+    <td style="width:100px;">
+        <asp:Label ID="Label30" runat="server" Text="Cliente:"></asp:Label>
+        </td>
+    <td style="width:100px;">
+        <telerik:RadComboBox ID="CboCliente" Runat="server">
+        </telerik:RadComboBox>
+        </td>
+    <td style="width:100px;">
+        <asp:Label ID="Label31" runat="server" Text="Tipo de Servicio:"></asp:Label>
+        </td>
+    <td style="width:100px;">
+        <telerik:RadComboBox ID="cboServicioTipo" Runat="server">
+        </telerik:RadComboBox>
+        </td>
+    <td style="width:100px;">
+        <asp:Label ID="Label32" runat="server" Text="Fecha de Inicio:"></asp:Label>
+        </td>
+    <td style="width:100px;">
+        <telerik:RadDatePicker ID="rdFI" Runat="server">
+        </telerik:RadDatePicker>
+        </td>
+    <td style="width:100px;">
+        <asp:Label ID="Label33" runat="server" Text="Fecha Final:"></asp:Label>
+        </td>
+    <td style="width:100px;">
+        <telerik:RadDatePicker ID="rdFF" Runat="server">
+        </telerik:RadDatePicker>
+        </td>
+
+    </tr>
+    
+    <tr>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+
+    </tr>
+    
+    <tr>
+    <td style="width:100px;">
+        <asp:Label ID="Label34" runat="server" Text="Region:"></asp:Label>
+        </td>
+    <td style="width:100px;">
+        <telerik:RadComboBox ID="cboRegion1" Runat="server">
+        </telerik:RadComboBox>
+        </td>
+    <td style="width:100px;">
+        <asp:Label ID="Label35" runat="server" Text="Estado:"></asp:Label>
+        </td>
+    <td style="width:100px;">
+        <telerik:RadComboBox ID="cboEstado" Runat="server">
+        </telerik:RadComboBox>
+        </td>
+    <td style="width:100px;">
+        <asp:Label ID="Label36" runat="server" Text="Status:"></asp:Label>
+        </td>
+    <td style="width:100px;">
+        <telerik:RadComboBox ID="cboStatusAsigna" Runat="server">
+        </telerik:RadComboBox>
+        </td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">
+        <asp:CheckBox ID="chkJuridico" runat="server" 
+            Text="Ocultar servicios juridicos." />
+        </td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+
+    </tr>
+    
+    <tr>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">
+        <telerik:RadButton ID="btnBuscar" runat="server" Text="Buscar">
+        </telerik:RadButton>
+        </td>
+
+    </tr>
+    
+    <tr>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+    <td style="width:100px;">&nbsp;</td>
+
+    </tr>
+    
+    </table>    
+    </div>
+
+</asp:Content>

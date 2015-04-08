@@ -1,0 +1,158 @@
+﻿Imports System.Data
+
+Partial Class BackOffice_RecepcionExpedientesBO
+    Inherits System.Web.UI.Page
+    Dim csBaseGes As New ClaseBaseGestoria
+    Dim bd As New BaseDatosSQL
+#Region "procesos"
+
+    Public Sub ABRIR_VENTANA(ByVal PopUpWindowPage As String, ByVal alto As Integer, ByVal largo As Integer)
+        Dim Script As String = ""
+        Script = " <script language=JavaScript id='PopupWindow'>  var confirmWin = null; confirmWin = window.open('" & PopUpWindowPage & "','myWindow','status = 1, scrollbars=1,height = " & alto & ", width = " & largo & ", resizable = 1 '); if((confirmWin != null) && (confirmWin.opener==null)) { confirmWin.opener = self; } </script> "
+        If Not ClientScript.IsStartupScriptRegistered("PopupWindow") Then
+            ClientScript.RegisterStartupScript(Me.GetType, "PopupWindow", Script)
+        End If
+    End Sub
+
+    Private Sub BuscaServicioVerificacion(ByVal nogestion As String)
+
+        Dim comando = "SELECT [NoGestion]    ,[Reporte_FechaRepor]      ,[Reporte_poliza]      ,[Aseguradora]      ,[NombreAseg]      ,[EntregaExpediente_fecha], [TipoEntrega]       ,[EntregaExpediente_Guia]       ,[EntregaExpediente_fechaVer]       ,[TipoServicio]   FROM [EntregaExpedientesGestion_vw] where  NoGestion='" & nogestion & "'"
+        Dim dsVer As DataSet
+        dsVer = bd.QueryDataSet(comando, Session("connGestion"))
+        With radExpedienteVer
+            .DataSource = dsVer.Tables(0)
+            .DataBind()
+        End With
+
+    End Sub
+
+
+    Public Sub guardar_Recepcion(ByVal noServicio As String)
+        Dim sGestion As String = noServicio.Trim
+        Dim nLargo As Integer = Len(sGestion)
+        Dim p_Anio As String = Mid(sGestion, 1, 4)
+        Dim p_Cliente As String = Mid(sGestion, 5, 2)
+        Dim p_tipo As String = Mid(sGestion, 7, 2)
+        Dim p_estado As String = Mid(sGestion, 9, 2)
+        Dim p_consec As String = Mid(sGestion, 11, nLargo)
+
+        Dim fechaRecepcion As String = Format(dateRecibe.SelectedDate, "yyyyMMdd")
+        Dim comentarios As String = txtComentarios.Text.Trim.ToUpper
+        Dim guia As String = txtGuia.Text.Trim.ToUpper
+        Dim TipoEntrega As String = rblTipoEntrega.SelectedItem.Value
+        csBaseGes.Insert_EntregaExpedientesGestoria(p_Anio, p_Cliente, p_tipo, p_estado, p_consec, comentarios, Session("clvUsuario"), fechaRecepcion, "0", "01/01/1900", TipoEntrega, guia)
+        Dim dsVer As New DataSet
+        dsVer = csBaseGes.SelectRecords_EntregaExpedientesSinVerificar
+        With radExpedienteVer
+            .DataSource = dsVer.Tables(0)
+            .DataBind()
+        End With
+
+    End Sub
+
+
+    Public Sub buscaServicio(ByVal noServicio As String)
+
+        Dim sGestion As String = noServicio.Trim
+        Dim nLargo As Integer = Len(sGestion)
+        Dim p_Anio As String = Mid(sGestion, 1, 4)
+        Dim p_Cliente As String = Mid(sGestion, 5, 2)
+        Dim p_tipo As String = Mid(sGestion, 7, 2)
+        Dim p_estado As String = Mid(sGestion, 9, 2)
+        Dim p_consec As String = Mid(sGestion, 11, nLargo)
+        Dim ds As New DataSet
+
+        If p_Anio.Trim = String.Empty Then p_Anio = 0
+        If p_Cliente.Trim = String.Empty Then p_Cliente = 0
+        If p_tipo.Trim = String.Empty Then p_tipo = 0
+        If p_estado.Trim = String.Empty Then p_estado = 0
+        If p_consec.Trim = String.Empty Then p_consec = 0
+
+
+        ds = csBaseGes.SelectRecords_reportesGestion(p_Anio, p_Cliente, p_tipo, p_estado, p_consec)
+        Dim dr As DataRow
+        'MyDataSet.Tables.Count = 0
+        If ds.Tables(0).Rows.Count > 0 Then
+            For Each dr In ds.Tables(0).Rows
+                lbldatos.Text = " No. de Servicio:" & noServicio & Chr(13) & "Asegurado: " & dr("Reporte_ApaternoAseg") & " " & dr("Reporte_AMaternoAseg") & " " & dr("Reporte_NombreAseg") & Chr(13) & "No. de Poliza:" & dr("Reporte_poliza")
+                Dim master As MasterPageGestionOperativa = DirectCast(Me.Master, MasterPageGestionOperativa)
+                Dim nExpediente As Telerik.Web.UI.RadNumericTextBox = master.FindControl("txtNoGestion")
+                'Session("noGestionIntegral") = txtExpediente.Text
+                nExpediente.Text = p_Anio & p_Cliente & p_tipo & p_estado & p_consec
+
+                master.CargaDatosExpediente()
+
+                ' aqui por favor enviar a la master page el No. de Servicio para que se refrequen los datos.
+                cmdGuardar.Enabled = True
+            Next
+        Else
+            lbldatos.Text = " El No. de Servicio no Existe"
+            cmdGuardar.Enabled = False
+        End If
+
+    End Sub
+
+
+#End Region
+
+    Protected Sub Page_Load(sender As Object, e As System.EventArgs) Handles Me.Load
+        'Session("clvUsuario") = "CZL"
+        If Not Page.IsPostBack Then
+            ' dateRecibe.SelectedDate = (Format(Now(), "dd/MM/yyyy"))
+            Dim dsVer As DataSet
+            dsVer = csBaseGes.SelectRecords_EntregaExpedientesSinVerificar
+            With radExpedienteVer
+                .DataSource = dsVer.Tables(0)
+                .DataBind()
+            End With
+        End If
+    End Sub
+
+    Protected Sub txtExpediente_TextChanged(sender As Object, e As System.EventArgs) Handles txtExpediente.TextChanged
+        If txtExpediente.Text.Trim <> String.Empty Then
+            buscaServicio(txtExpediente.Text)
+        End If
+
+    End Sub
+
+    Protected Sub cmdGuardar_Click(sender As Object, e As System.EventArgs) Handles cmdGuardar.Click
+        guardar_Recepcion(txtExpediente.Text.Trim)
+    End Sub
+
+    Protected Sub radExpedienteVer_ItemCommand(sender As Object, e As Telerik.Web.UI.GridCommandEventArgs) Handles radExpedienteVer.ItemCommand
+        
+
+        If e.CommandName = "cmdServicio" Then
+            Dim master As MasterPageGestionOperativa = DirectCast(Me.Master, MasterPageGestionOperativa)
+            Dim nExpediente As Telerik.Web.UI.RadNumericTextBox = Me.Master.FindControl("txtNoGestion")
+            nExpediente.Text = e.Item.Cells(3).Text.Trim
+            Session("noGestionIntegral") = e.Item.Cells(3).Text.Trim
+            master.CargaDatosExpediente()
+            ' aqui mandar el no. de servicio escogido al encabezado.
+            Dim nServicio = e.Item.Cells(3).Text.Trim
+            ABRIR_VENTANA("VerificacionExpedientesBO.aspx?nogestion=" & nServicio, 800, 1000)
+
+        End If
+    End Sub
+
+    Protected Sub cmdGuardar0_Click(sender As Object, e As System.EventArgs) Handles cmdGuardar0.Click
+        Panel1.Visible = True
+        txtExpediente.Text = String.Empty
+        txtComentarios.Text = String.Empty
+        txtGuia.Text = String.Empty
+        dateRecibe.SelectedDate = Format(Now(), "dd/MM/yyyy")
+
+
+    End Sub
+
+    Protected Sub Button1_Click(sender As Object, e As System.EventArgs) Handles Button1.Click
+        If txtNumexpe.Text.Trim <> String.Empty Then
+            If IsNumeric(txtNumexpe.Text.Trim) Then
+                BuscaServicioVerificacion(txtNumexpe.Text)
+            End If
+        End If
+
+
+
+    End Sub
+End Class

@@ -1,0 +1,309 @@
+/**{
+	padding: 0;
+}
+*/
+.buttons
+{
+   background-image:url('../Imagenes/titulo2.png');
+   color:White;
+   
+    }
+
+.Fechas
+{
+  /*
+    width:150px;
+    height:20px;
+    text-align:right;*/
+    color:white;
+     font-family: Helvetica Bold;
+    font-weight:bold;
+    background-color:Gray; 
+    Font-Size:12.57pt;   
+}
+.LabelStyle
+{
+    /*
+    width:150px;
+    height:20px;
+    text-align:right;*/
+    color:white;
+     font-family: Helvetica Bold;
+    font-weight:bold;
+    background-color:transparent; 
+    Font-Size:12.57pt;   
+ }
+
+
+.TotalesLink
+{
+    font-weight:bold;
+    font-family: Helvetica Bold;
+    font-size:medium;
+    color:#2B3990;
+      
+      }
+
+
+
+#tablew{border-spacing: 2px;}
+td{padding: 6px;}
+
+@font-face {
+ font-family: 'Futura';
+ src: url("fuentes/FutuMd_.eot"); /* EOT file for IE */
+}
+@font-face {
+ font-family: 'Futura';
+ src: url("fuentes/FutuMd_.ttf"); /* TTF file for CSS3 browsers */
+}
+body{
+	background:#FFFFFF;
+	font-size: 12pt;
+	font-family: 'Futura';
+	margin: 0;
+}
+#inicio{
+	width: 100%;
+	background-image:url('../image/placasuperior.png');
+	height: 30px;
+	display: block;
+	padding: 4px 0px 0px 0px;
+	box-shadow: 5px 5px 5px #CCCCCC;
+}
+#inicio span{
+	text-align: right;
+ 	width: 68%;
+ 	margin: 0 auto;
+ 	display: block;
+ 	font-size: 10pt;
+}
+#inicio span a{
+	color: #455560;
+	text-decoration: none;
+}
+#inicio span a:hover{
+	color: #000000;
+}
+#contenedor{
+	margin: 0 auto;
+	max-width: 1024px;
+}
+header{
+	width: 100%;
+	padding-top: 37px;
+	padding-bottom: 22px;
+	display: table;
+}
+#logo{
+	display: inline-block;
+	margin-right: 0px;
+	width: 344px;
+	float: left;
+}
+#logo a img{
+	border:none;
+}
+#menuh{
+	display: inline-block;
+	margin-top: 20px;
+	vertical-align: top;
+	float: left;
+	width: 677px;
+}
+#banner{
+ width: 100%;
+
+}
+
+section	{
+	text-align: center;
+}
+.box{
+	width: 255px;
+	display: inline-block;
+	margin: 30px;
+	vertical-align: top;
+	min-height: 340px;
+}
+.titulo_box{
+	border-bottom: 5px solid #CCCCCC;
+	font-size: 22px;
+	width: 100%;
+	display: block;
+}
+.subtitulo_box{
+	border-bottom: 5px solid #CCCCCC;
+	font-size: 18px;
+	width: 100%;
+	display: block;
+	text-align: left;
+}
+#contenedor_redes_index{
+	margin-top: 5px;
+	margin-bottom: 10px;
+	background-image: url('../image/degrad_redes.png');
+	border:1px solid #CCCCCC;
+}
+#contenedor_redes_index a img{
+	border:0;
+}
+
+#contenedor_twiiter{
+	margin-top: 5px;
+	margin-bottom: 10px;
+	border:1px solid #CCCCCC;
+	padding: 5px;
+}
+.box img{
+	margin-top: 15px;
+}
+.box p{
+	color: #455560;
+	font-size: 15px;
+	line-height: 13px;
+	margin-top: 10px;
+}
+
+
+#nuestros_negocios_index{
+	width: 88%;
+	margin: 0 auto;
+	display: inline-block;
+	vertical-align: top;
+	
+
+}
+#titulo_nuestrosNegocios{
+	text-align: left;
+	border-bottom:3px solid #CCCCCC;
+	width: 100%;
+	display: inline-block;
+	font-size: 22px;
+}
+.box_logos{
+	width: 180px;
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 12px;
+}
+#pie_miniMapa{
+	text-align: center;
+	background: rgba(204, 204, 204, 0.5);
+}
+.miniMapa{
+	width:140px;
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 12px;
+	font-size: 13px;
+	margin: 15px;
+	min-height: 100px;
+}
+.miniMapa a{
+
+	color: #000000;
+	text-decoration: none;
+}
+
+.miniMapa a:hover{
+	color: #848484;
+	text-decoration: underline;
+}
+
+.titulo_miniMapa{
+	display:block;
+	border-bottom: 3px solid #CCCCCC;
+	color: #000000;
+}
+.titulo_miniMapa:hover{
+	color: #848484;
+	text-decoration: underline;
+}
+.miniMapa ul{
+	padding: 0;
+	margin: 5px 0px;
+	list-style-type: none;
+	text-align: left;
+	font-size: 12px;
+}
+.miniMapa ul a li{
+	color: #000000;
+}
+.miniMapa ul a li:hover{
+	color: #848484;
+}
+footer{
+
+	clear: both;
+	text-align: center;
+}
+footer #informacion{
+	width: 100%;
+	background: #8DC63F;
+	font-size: 12px;
+	color: #FFFFFF;
+	padding: 5px 0px 5px 0px;
+}
+footer #copy{
+	width: 100%;
+	background: rgba(204, 204, 204, 0.5);
+	font-size: 11px;
+	padding: 5px 0px 5px 0px;
+}
+@media screen and (max and (max-height: 768px){
+	#Radpane4{
+		Min-Height: 350;
+	}
+	#menuh{
+		width: 655px;
+	}
+}
+
+@media screen and (max-height: 1050px){
+	#logo{
+		width: 290px;
+	}
+	#menuh{
+		width: 655px;
+
+	}
+}
+@media screen and (max-width: 970px){
+	#logo{
+		display: block;
+		float: none;
+		margin: 0 auto;
+		width: 344px;
+	}
+	#menuh{
+		display: table;
+		float: none;
+		margin: 0 auto;
+		margin-top: 20px;
+	}
+	#banner{
+		display: none;
+	}
+}
+@media screen and (min-width: 970px){
+
+	#banner_estatico{
+		display: none;
+	}
+
+}
+@media screen and (max-width: 400px){
+	#logo{
+		width: 244px;
+	}
+}
+
+
+/*textos*/
+.texto-mediano-azul{
+	color:#455560;
+	font-size: 22px;
+}
+
+

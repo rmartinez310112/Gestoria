@@ -1,0 +1,55 @@
+
+
+**************dalclass******************************************
+ Public Function update_reporteGestion2(ByVal NoGestion As String, ByVal Reporte_clvMpio As String, ByVal Reporte_APaternoReporta As String, ByVal Reporte_AMaternoReporta As String, ByVal Reporte_NombreReporta As String, ByVal Reporte_LadaReporta As String, ByVal Reporte_telReporta As String, ByVal Reporte_poliza As String, ByVal Reporte_Inciso As String, ByVal Reporte_ApaternoAseg As String, ByVal Reporte_AMaternoAseg As String, ByVal Reporte_NombreAseg As String, ByVal Reporte_MailAseg As String, ByVal Reporte_CiaAsegura As String, ByVal Reporte_UsuarioMod As String, ByVal Reporte_LadaAseg As String, ByVal Reporte_TelAseg As String, ByVal Reporte_LadamovilAseg As String, ByVal Reporte_TelmovilAseg As String, ByVal pReporte_contrato As String, ByVal preporte_staPol As String, ByVal preporte_IniVig As String, ByVal preporte_FinVig As String, ByVal pReporte_AsegContrato As Integer) As Boolean
+        update_reporteGestion2 = False
+        ' descomponemos el No dado en los datos correctos:
+        Dim sGestion As String = NoGestion.Trim
+        Dim nLargo As Integer = Len(sGestion)
+        Dim p_Anio As String = Mid(sGestion, 1, 4)
+        Dim p_Cliente As String = Mid(sGestion, 5, 2)
+        Dim p_tipo As String = Mid(sGestion, 7, 2)
+        Dim p_estado As String = Mid(sGestion, 9, 2)
+        Dim p_consec As String = Mid(sGestion, 11, nLargo)
+        Dim comando As String = "exec update_ReporteGestion2 " & _
+        p_Anio & "," & _
+        p_Cliente & "," & _
+        p_tipo & "," & _
+        p_estado & "," & _
+        Reporte_clvMpio & "," & _
+        p_consec & "," & _
+        csNeg.myStr(Reporte_APaternoReporta) & "," & _
+        csNeg.myStr(Reporte_AMaternoReporta) & "," & _
+        csNeg.myStr(Reporte_NombreReporta) & "," & _
+        csNeg.myStr(Reporte_LadaReporta) & "," & _
+        csNeg.myStr(Reporte_telReporta) & "," & _
+        csNeg.myStr(Reporte_poliza) & "," & _
+        csNeg.myStr(Reporte_Inciso) & "," & _
+        csNeg.myStr(Reporte_ApaternoAseg) & "," & _
+        csNeg.myStr(Reporte_AMaternoAseg) & "," & _
+        csNeg.myStr(Reporte_NombreAseg) & "," & _
+        csNeg.myStr(Reporte_MailAseg) & "," & _
+        csNeg.myStr(Reporte_CiaAsegura) & "," & _
+        csNeg.myStr(Reporte_UsuarioMod) & "," & _
+        csNeg.myStr(Reporte_LadaAseg) & "," & _
+        csNeg.myStr(Reporte_TelAseg) & "," & _
+        csNeg.myStr(Reporte_LadamovilAseg) & "," & _
+        csNeg.myStr(Reporte_TelmovilAseg) & "," & _
+        csNeg.myStr(pReporte_contrato) & ",'" & _
+        preporte_staPol & "','" & _
+        preporte_IniVig & "','" & _
+        preporte_FinVig & "'," & _
+        pReporte_AsegContrato
+
+        If csSQLsvr.EjecutarSP(comando, conBaseDatos) = BaseDatosSQL.Estatus.OK Then
+            update_reporteGestion2 = True
+        Else
+            update_reporteGestion2 = False
+        End If
+
+        Insert_BitacoraCambios(NoGestion, "Se realizaron cambios en los datos Generales de  Gestion", Reporte_UsuarioMod)
+        Return update_reporteGestion2
+
+    End Function
+
+

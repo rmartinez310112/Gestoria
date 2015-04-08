@@ -1,0 +1,301 @@
+﻿<%@ Page Language="VB" MasterPageFile="~/MasterPageGestionOperativa.master" AutoEventWireup="false" CodeFile="Comprobacion_Gastos.aspx.vb" Inherits="PagosGastosGestor_Comprobacion_Gastos" %>
+
+<%@ Register src="../UserControls/Fechas.ascx" tagname="Fechas" tagprefix="uc1" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+  
+
+    <div>
+    <br />
+    <div>
+        
+    
+        <asp:Label ID="Label1" runat="server" Text="Control de Pagos" 
+            CssClass="Titulos"></asp:Label>
+    </div>
+    <br />
+        <div>
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td style="width:200px;">
+
+
+        <telerik:RadComboBox ID="RadComboBox1" Runat="server">
+        <Items>
+        <telerik:RadComboBoxItem Selected="true" runat="server" Text="Pagos Registrados" Value="1" />
+        <telerik:RadComboBoxItem runat="server" Text="Pagos Autorizados" Value="2" />
+        <telerik:RadComboBoxItem runat="server" Text="Pagos Cancelados" Value="3" />
+        </Items>
+        </telerik:RadComboBox>
+                    </td>
+                     <td style="width:200px;">
+        <uc1:Fechas ID="SelectorFechas" runat="server" />
+                    </td>
+                     <td style="width:200px;">
+        <telerik:RadButton ID="BtnResultado" runat="server" Text="Buscar">
+        </telerik:RadButton>
+                    </td>
+                    <td>
+                    
+                        <telerik:RadButton ID="RadButton1" runat="server" Text="Exportar a Excel">
+                        </telerik:RadButton>
+                    
+                    </td>
+                </tr>
+            </table>
+
+
+    <br />
+        </div>
+    
+        
+    <br />
+    <br />
+  
+        <telerik:RadGrid ID="RadGrid2" runat="server" AutoGenerateColumns="False" 
+        CellSpacing="0" Culture="es-ES" GridLines="None"  Skin="Forest" 
+            HorizontalAlign="Center" Width="90%">
+            <MasterTableView>
+                <Columns>
+                    <telerik:GridBoundColumn DataField="Servicio" 
+                        FilterControlAltText="Filter column column" HeaderText="No.Gestion" 
+                        UniqueName="column">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="Servicio_NomServicio" 
+                        FilterControlAltText="Filter column2 column" HeaderText="Tramite" 
+                        UniqueName="column2">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="COSTO" 
+                        FilterControlAltText="Filter column1 column" HeaderText="Monto" 
+                        UniqueName="column1">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="GESTOR" 
+                        FilterControlAltText="Filter column3 column" HeaderText="Gestor" 
+                        UniqueName="column3">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="FECHAREGISTRO" 
+                        FilterControlAltText="Filter column4 column" 
+                        HeaderText="Fecha de Requerimiento" UniqueName="column4" DataFormatString="{0:dd-MM-yyyy HH:mm}">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="USUARIO" 
+                        FilterControlAltText="Filter column6 column" HeaderText="Requisitó" 
+                        UniqueName="column6">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="TIPO_FORMA_DESCRIPCION" 
+                        FilterControlAltText="Filter column8 column" HeaderText="Tipo de Pago" 
+                        UniqueName="column8">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridTemplateColumn DataField="reciboPago" 
+                        FilterControlAltText="Filter TemplateColumn column" HeaderText="No. Recibo" 
+                        UniqueName="TemplateColumn">
+                        <ItemTemplate>
+                            <telerik:RadTextBox ID="RadTextBox1" Runat="server" Skin="Forest">
+                            </telerik:RadTextBox>
+                        </ItemTemplate>
+                    </telerik:GridTemplateColumn>
+                    <telerik:GridButtonColumn CommandName="cmdGuardar" 
+                        FilterControlAltText="Filter column10 column" Text="Guardar" 
+                        UniqueName="column10">
+                    </telerik:GridButtonColumn>
+                    <telerik:GridButtonColumn CommandName="cmdCancela" 
+                        FilterControlAltText="Filter column9 column" Text="Cancelar" 
+                        UniqueName="column9">
+                    </telerik:GridButtonColumn>
+                </Columns>
+            </MasterTableView>
+        </telerik:RadGrid>
+    
+   </div>
+   
+   <div>
+       <br />
+   </div>
+   <div>
+   </div>
+   <div>
+       <telerik:RadNotification ID="RadNotification2" runat="server">
+       </telerik:RadNotification>
+   <br />
+   </div>
+    <div>
+    <telerik:RadGrid ID="rgAutorizados" runat="server" AutoGenerateColumns="False" 
+        CellSpacing="0" Culture="es-ES" GridLines="None" Skin="Forest" Width="90%">
+            <MasterTableView>
+                <Columns>
+                    <telerik:GridBoundColumn DataField="Servicio" 
+                        FilterControlAltText="Filter column column" HeaderText="No.Gestion" 
+                        UniqueName="column">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="Servicio_NomServicio" 
+                        FilterControlAltText="Filter column2 column" HeaderText="Tramite" 
+                        UniqueName="column2">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="COSTO" 
+                        FilterControlAltText="Filter column1 column" HeaderText="Monto" 
+                        UniqueName="column1">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="GESTOR" 
+                        FilterControlAltText="Filter column3 column" HeaderText="Gestor" 
+                        UniqueName="column3">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="FECHAREGISTRO" 
+                        FilterControlAltText="Filter column4 column" 
+                        HeaderText="Fecha de Requerimiento" UniqueName="column4" DataFormatString="{0:dd-MM-yyyy HH:mm}">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="FECHA_AUTO" 
+                        FilterControlAltText="Filter column5 column" HeaderText="Fecha de Autorizacion" 
+                        UniqueName="column5" DataFormatString="{0:dd-MM-yyyy HH:mm}">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="USUARIO" 
+                        FilterControlAltText="Filter column6 column" HeaderText="Requisitó" 
+                        UniqueName="column6">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="USUARIOAUTO" 
+                        FilterControlAltText="Filter column7 column" HeaderText="Autorizó" 
+                        UniqueName="column7">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="TIPO_FORMA_DESCRIPCION" 
+                        FilterControlAltText="Filter column8 column" HeaderText="Tipo de Pago" 
+                        UniqueName="column8">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="reciboPago" 
+                        FilterControlAltText="Filter column9 column" HeaderText="No. Recibo" 
+                        UniqueName="column9">
+                    </telerik:GridBoundColumn>
+                </Columns>
+            </MasterTableView>
+        </telerik:RadGrid>
+        <div>
+        <br />
+        </div>
+        <telerik:RadGrid ID="rgCancelados" runat="server" AutoGenerateColumns="False" 
+        CellSpacing="0" Culture="es-ES" GridLines="None" Skin="Forest" Width="90%">
+            <MasterTableView>
+                <Columns>
+                    <telerik:GridBoundColumn DataField="Servicio" 
+                        FilterControlAltText="Filter column column" HeaderText="No.Gestion" 
+                        UniqueName="column">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="Servicio_NomServicio" 
+                        FilterControlAltText="Filter column2 column" HeaderText="Tramite" 
+                        UniqueName="column2">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="COSTO" 
+                        FilterControlAltText="Filter column1 column" HeaderText="Monto" 
+                        UniqueName="column1">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="GESTOR" 
+                        FilterControlAltText="Filter column3 column" HeaderText="Gestor" 
+                        UniqueName="column3">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="FECHAREGISTRO" 
+                        FilterControlAltText="Filter column4 column" 
+                        HeaderText="Fecha de Requerimiento" UniqueName="column4" DataFormatString="{0:dd-MM-yyyy HH:mm}">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="FECHACANCELA" 
+                        FilterControlAltText="Filter column5 column" HeaderText="Fecha de Cancelacion" 
+                        UniqueName="column5" DataFormatString="{0:dd-MM-yyyy HH:mm}">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="USUARIO" 
+                        FilterControlAltText="Filter column6 column" HeaderText="Requisitó" 
+                        UniqueName="column6">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="USUACANCELA" 
+                        FilterControlAltText="Filter column7 column" HeaderText="Canceló" 
+                        UniqueName="column7">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="TIPO_FORMA_DESCRIPCION" 
+                        FilterControlAltText="Filter column8 column" HeaderText="Tipo de Pago" 
+                        UniqueName="column8">
+                    </telerik:GridBoundColumn>
+                </Columns>
+            </MasterTableView>
+        </telerik:RadGrid>
+    </div>
+    
+</asp:Content>
+
+<%--<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <script type="text/javascript" id="telerikClientEvents1">
+//<![CDATA[
+
+	function txtrecibo_OnButtonClick(sender,args)
+	{
+	//Add JavaScript handler code here
+	}
+//]]>
+</script>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+    </div>
+        <telerik:RadGrid ID="RadGrid1" runat="server" AutoGenerateColumns="False" 
+        CellSpacing="0" Culture="es-ES" GridLines="None" Skin="Forest">
+            <MasterTableView>
+                <Columns>
+                    <telerik:GridBoundColumn DataField="Servicio" 
+                        FilterControlAltText="Filter column column" HeaderText="No.Gestion" 
+                        UniqueName="column">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="Servicio_NomServicio" 
+                        FilterControlAltText="Filter column2 column" HeaderText="Tramite" 
+                        UniqueName="column2">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="COSTO" 
+                        FilterControlAltText="Filter column1 column" HeaderText="Monto" 
+                        UniqueName="column1">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="GESTOR" 
+                        FilterControlAltText="Filter column3 column" HeaderText="Gestor" 
+                        UniqueName="column3">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="FECHAREGISTRO" 
+                        FilterControlAltText="Filter column4 column" 
+                        HeaderText="Fecha de Requerimiento" UniqueName="column4">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="FECHACANCELA" 
+                        FilterControlAltText="Filter column5 column" HeaderText="Fecha de Cancelacion" 
+                        UniqueName="column5">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="USUARIO" 
+                        FilterControlAltText="Filter column6 column" HeaderText="Requisitó" 
+                        UniqueName="column6">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="USUACANCELA" 
+                        FilterControlAltText="Filter column7 column" HeaderText="Canceló" 
+                        UniqueName="column7">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn DataField="TIPO_FORMA_DESCRIPCION" 
+                        FilterControlAltText="Filter column8 column" HeaderText="Tipo de Pago" 
+                        UniqueName="column8">
+                    </telerik:GridBoundColumn>
+                    <telerik:GridTemplateColumn DataField="reciboPago" 
+                        FilterControlAltText="Filter TemplateColumn column" HeaderText="No. Recibo" 
+                        UniqueName="TemplateColumn">
+                        <ItemTemplate>
+                            <telerik:RadTextBox ID="RadTextBox1" Runat="server" Skin="Forest">
+                            </telerik:RadTextBox>
+                        </ItemTemplate>
+                    </telerik:GridTemplateColumn>
+                    <telerik:GridButtonColumn CommandName="cmdGuardar" 
+                        FilterControlAltText="Filter column10 column" Text="Guardar" 
+                        UniqueName="column10">
+                    </telerik:GridButtonColumn>
+                    <telerik:GridButtonColumn CommandName="cmdCancela" 
+                        FilterControlAltText="Filter column9 column" Text="Cancelar" 
+                        UniqueName="column9">
+                    </telerik:GridButtonColumn>
+                </Columns>
+            </MasterTableView>
+        </telerik:RadGrid>
+    <telerik:RadScriptManager ID="RadScriptManager1" Runat="server">
+    </telerik:RadScriptManager>
+    </form>
+</body>
+</html>--%>
