@@ -220,7 +220,7 @@ Inherits System.Web.UI.Page
 
 
     Private Sub CargarListadImagenes()
-        GridView1.DataSource = DALClass.GetAll(Session("NumGestionControlTerm"), "ArchivosRechazadosPDF")
+        GridView1.DataSource = csDAL.GetAll(Session("NumGestionControlTerm"), "ArchivosRechazadosPDF")
         GridView1.DataBind()
     End Sub
 
@@ -231,7 +231,7 @@ Inherits System.Web.UI.Page
             Using reader As New BinaryReader(FileUpload1.PostedFile.InputStream)
                 Dim image As Byte() = reader.ReadBytes(FileUpload1.PostedFile.ContentLength)
 
-                DALClass.Guardar(Session("NumGestionControlTerm"), "ArchivosRechazadosPDF", Session("clvUsuario"), FileUpload1.FileName, FileUpload1.PostedFile.ContentLength, image)
+                csDAL.Guardar(Session("NumGestionControlTerm"), "ArchivosRechazadosPDF", Session("clvUsuario"), FileUpload1.FileName, FileUpload1.PostedFile.ContentLength, image)
             End Using
 
             CargarListadImagenes()

@@ -3,7 +3,7 @@ Imports Telerik.Web.UI
 Imports Telerik.Web
 
 
-Partial Class Seguimiento
+Partial Class RemesaSeguimiento
     Inherits System.Web.UI.Page
     Dim csSQLsvr As New BaseDatosSQL
     Dim resp As New Resultado
@@ -176,7 +176,7 @@ Partial Class Seguimiento
         csSQLsvr.LlenarRadCombo(cmbEstado, comando, Session("connGestion"))
     End Sub
 
-  
+
     Public Sub cargaEstados()
 
         Dim comando As String = "exec Select_cbo_estados"
@@ -204,7 +204,7 @@ Partial Class Seguimiento
         Me.rdDtpFI.SelectedDate = answer
         Me.rdDtpFF.SelectedDate = DateTime.Now.Date
 
-       
+
     End Function
 
     Protected Sub btnBuscar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnBuscar.Click
@@ -311,11 +311,11 @@ Partial Class Seguimiento
 
         '    strQuery = strQuery + "AND Reporte_FechaRepor >= ''" + FechaI + "'' AND Reporte_FechaRepor <= ''" + (DateAdd(DateInterval.Day, 1, CDate(FechaF))).ToString("yyyy-MM-dd") + "'' "
 
-       
 
 
 
-    
+
+
         'answer = CDate(Today.Date.Year & "/" & Today.Date.Month & "/" & Today.Day - 30)
 
         'FechaI = rdDtpFI.SelectedDate.Value.ToString("yyyy-MM-dd") '  .SelectedDate .ToString("yyyy-MM-dd")
@@ -345,7 +345,7 @@ Partial Class Seguimiento
 
 
 
-      
+
 
 
         resp.DataTable = csSQLsvr.QueryDataDatable("exec spGetSeguimientoGestoria '" & strQuery & "'", Session("connGestion"))
@@ -355,7 +355,7 @@ Partial Class Seguimiento
             TipoSeguimiento()
         End If
 
-       
+
 
         'csSQLsvr.LlenarRadGridCustom(radSeguimiento, "exec spGetSeguimientoGestoria", Session("connGestion"), numPage)
 
@@ -679,7 +679,7 @@ Partial Class Seguimiento
     End Sub
 
 
-  
+
     Public Sub Rechazos()
 
         Dim DV1 As New DataView(ViewState("dataset"))
@@ -691,7 +691,7 @@ Partial Class Seguimiento
 
     End Sub
 
-  
+
 
     Public Sub Seleccioninicialfechas()
 

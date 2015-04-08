@@ -3,7 +3,7 @@ Imports Telerik.Web.UI
 Imports Telerik.Web
 Imports Telerik
 
-Partial Class AsignacionControl_AsignarGestor_Pendiente1
+Partial Class RemesaAsignarGestor
 
     Inherits System.Web.UI.Page
     Dim csNeg As New ClaseNegocios
@@ -13,7 +13,7 @@ Partial Class AsignacionControl_AsignarGestor_Pendiente1
     Dim VentanasWin As New Ventanas
 
     'cboEstado
-    
+
     Public Sub CargaMpio(ByVal clvEstado As Integer)
 
         Dim comando As String = "exec Select_cbo_Municipios " & clvEstado
@@ -63,7 +63,7 @@ Partial Class AsignacionControl_AsignarGestor_Pendiente1
             SetFechas()
             ReasignaFiltros()
             LlenaGrid()
-            
+
         End If
     End Sub
 
@@ -202,7 +202,7 @@ Partial Class AsignacionControl_AsignarGestor_Pendiente1
 
     End Sub
 
-  
+
 
     Protected Sub RadAjaxManager1_AjaxRequest(ByVal sender As Object, ByVal e As Web.UI.AjaxRequestEventArgs) Handles RadAjaxManager1.AjaxRequest
 
@@ -344,7 +344,7 @@ Partial Class AsignacionControl_AsignarGestor_Pendiente1
 
     End Sub
 
-    
+
     'Protected Sub ChkOrdenar_CheckedChanged(sender As Object, e As System.EventArgs) Handles ChkOrdenar.CheckedChanged
     '    If ChkOrdenar.Checked Then
     '        RadioButtonList1.Visible = True

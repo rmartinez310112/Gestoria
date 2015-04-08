@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="VB" MasterPageFile="~/MasterPageGestionOperativa.master" AutoEventWireup="false"
-    CodeFile="GeneracionRemesa.aspx.vb" Inherits="Seguimiento" %>
+    CodeFile="GeneracionRemesa.aspx.vb" Inherits="GeneracionRemesa" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="../HojaEstilos/StyleSheet3H.css" rel="stylesheet" type="text/css" />

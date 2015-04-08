@@ -1,4 +1,4 @@
-﻿<%@ Page Language="VB" MasterPageFile="~/MasterPageGestionOperativa.master" AutoEventWireup="false" CodeFile="Seguimiento.aspx.vb" Inherits="Seguimiento" %> 
+﻿<%@ Page Language="VB" MasterPageFile="~/MasterPageGestionOperativa.master" AutoEventWireup="false" CodeFile="RemesaSeguimiento.aspx.vb" Inherits="RemesaSeguimiento" %> 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <link href="../HojaEstilos/StyleSheet3H.css" rel="stylesheet" type="text/css" /> 
     <style type="text/css">

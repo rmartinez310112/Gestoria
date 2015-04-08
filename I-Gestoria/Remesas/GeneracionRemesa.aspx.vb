@@ -3,7 +3,7 @@ Imports Telerik.Web.UI
 Imports Telerik.Web
 
 
-Partial Class Seguimiento
+Partial Class GeneracionRemesa
     Inherits System.Web.UI.Page
     Dim csSQLsvr As New BaseDatosSQL
     Dim serv As New ClaseBaseGestoria
@@ -151,7 +151,7 @@ Partial Class Seguimiento
     End Sub
 
     Protected Sub radSeguimiento_ItemCommand(sender As Object, e As Telerik.Web.UI.GridCommandEventArgs) Handles radSeguimiento.ItemCommand
-    
+
 
     End Sub
 
@@ -292,5 +292,5 @@ Partial Class Seguimiento
 
     End Function
 
-  
+
 End Class

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="VB" MasterPageFile="~/MasterPageGestionOperativa.master" AutoEventWireup="false" CodeFile="AsignarGestor_Pendiente1.aspx.vb" Inherits="AsignacionControl_AsignarGestor_Pendiente1" %>
+﻿<%@ Page Language="VB" MasterPageFile="~/MasterPageGestionOperativa.master" AutoEventWireup="false" CodeFile="RemesaAsignarGestor.aspx.vb" Inherits="RemesaAsignarGestor" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <link href="../HojaEstilos/StyleSheet3H.css" rel="stylesheet" type="text/css" />
     <telerik:RadCodeBlock ID="RadCodeBlock1" runat="server">
