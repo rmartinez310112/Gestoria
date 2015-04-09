@@ -98,6 +98,11 @@
             setTimeout("Abrir_Ventana('WinRemesaPrimerContacto')", delay_abrir_ventana);
         }
 
+
+        function Abrir_winRemesaEntregaCotizacion() {
+            setTimeout("Abrir_Ventana('winRemesaEntregaCotizacion')", delay_abrir_ventana);
+        }
+
         ///////////////////////////////////////////////////////////
 
         function Abrir_Ventana(ventana) {
@@ -505,7 +510,11 @@
                                           VisibleOnPageLoad="False" IconUrl="~/Imagenes/iconos/laptopIco.png" Modal="true" VisibleStatusbar="false">
                     </telerik:RadWindow>
 
-                    <telerik:RadWindow runat="server" ID="WinRemesaPrimerContacto" NavigateUrl="~/Remesas/PrimerContactoGestor.aspx" Width="950" Height="650" ReloadOnShow="true" ShowContentDuringLoad="false" Behaviors="Close"  VisibleTitlebar="true" 
+                    <telerik:RadWindow runat="server" ID="WinRemesaPrimerContacto" NavigateUrl="~/Remesas/PrimerContactoGestor.aspx" Width="1000" Height="650" ReloadOnShow="true" ShowContentDuringLoad="false" Behaviors="Close"  VisibleTitlebar="true" 
+                                          VisibleOnPageLoad="False" IconUrl="~/Imagenes/iconos/laptopIco.png" Modal="true" VisibleStatusbar="false">
+                    </telerik:RadWindow>
+
+                    <telerik:RadWindow runat="server" ID="winRemesaEntregaCotizacion" NavigateUrl="~/Remesas/RemesaEntregaCotizacion.aspx" Width="1000" Height="650" ReloadOnShow="true" ShowContentDuringLoad="false" Behaviors="Close"  VisibleTitlebar="true" 
                                           VisibleOnPageLoad="False" IconUrl="~/Imagenes/iconos/laptopIco.png" Modal="true" VisibleStatusbar="false">
                     </telerik:RadWindow>
 

@@ -180,6 +180,35 @@ Partial Class RemesaAsignarGestor
 
             VentanasWin.Abrir_winwinPrimerCg()
 
+        ElseIf e.CommandName = "CmdEnlaceCotizacion" Then
+
+            Dim indexRow As Integer = Convert.ToInt32(e.Item.ItemIndex)
+
+            Dim item As GridDataItem = radRemesaAsignacion.Items(indexRow)
+            Dim item3 As GridDataItem = DirectCast(e.Item, GridDataItem)
+            Dim sRemesa As String = DirectCast(item3("cmdNumRemesa").Controls(0), LinkButton).Text
+            Session("NumRemesa") = sRemesa
+
+            VentanasWin.Abrir_winwinRemesaEntregaCotizacion()
+            'Abrir_winwinRemesaEntregaCotizacion
+            'RemesaEntregaCotizacion.aspx
+
+            'CmdEnlaceAsignacion
+
+        ElseIf e.CommandName = "CmdEnlaceAsignacion" Then
+
+            Dim indexRow As Integer = Convert.ToInt32(e.Item.ItemIndex)
+
+            Dim item As GridDataItem = radRemesaAsignacion.Items(indexRow)
+            Dim item3 As GridDataItem = DirectCast(e.Item, GridDataItem)
+            Dim sRemesa As String = DirectCast(item3("cmdNumRemesa").Controls(0), LinkButton).Text
+            Session("NumRemesa") = sRemesa
+
+            VentanasWin.Abrir_winwinRemesaEntregaCotizacion()
+            'Abrir_winwinRemesaEntregaCotizacion
+            'RemesaEntregaCotizacion.aspx
+
+            'CmdEnlaceAsignacion
         End If
 
     End Sub
