@@ -12,7 +12,7 @@ Partial Class RemesaAsignarGestor
     Dim Cadena As String = GlobalVariables.sqlString
     Dim VentanasWin As New Ventanas
 
-    'cboEstado
+
 
     Public Sub CargaMpio(ByVal clvEstado As Integer)
 
@@ -55,6 +55,7 @@ Partial Class RemesaAsignarGestor
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         VentanasWin = New Ventanas(Master)
         If Not Page.IsPostBack Then
+            csDAL.CargaEstados(cboEstado)
             'cargaEstados(cboRegion.SelectedValue)
             'cargaClientes()
             'cargaRegion()
@@ -354,7 +355,8 @@ Partial Class RemesaAsignarGestor
     'End Sub
 
     Protected Sub cboEstado_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboEstado.SelectedIndexChanged
-        CargaMpio(cboEstado.SelectedValue)
+
+        csDAL.CargaMpio(cboMpio, cboEstado.SelectedValue)
 
     End Sub
 
@@ -362,9 +364,7 @@ Partial Class RemesaAsignarGestor
         Session("NumRemesa") = "RM20151"
         If Session("NumRemesa") <> "" Then
 
-            Response.Redirect("PrimerContactoGestor.aspx")
-
-            'VentanasWin.Abrir_winwinDetalleGestor()
+            VentanasWin.Abrir_WinWinRemesaPrimerContacto()
             '    RecalculaValoresGrid()
         Else
             csDAL.ConfigureNotification(RadNotification2, "Favor de seleccionar un numero de servicio")

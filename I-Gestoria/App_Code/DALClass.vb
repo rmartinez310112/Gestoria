@@ -16,6 +16,33 @@ Public Class DALClass
 
     End Sub
 
+    Public Sub CargaMpio(ByRef catMpio As Telerik.Web.UI.RadComboBox, ByVal clvEstado As Integer)
+
+        Dim comando As String = ""
+        Dim dt As DataTable
+
+        If clvEstado > 0 Then
+            comando = "exec Select_Municipios "
+            Dim filtro As String = ""
+
+            dt = csSQLsvr.QueryDataDatable(comando, conBaseDatos)
+            Dim DV As New DataView(dt)
+            filtro = "ESTADO in (0," & clvEstado & ")"
+            DV.RowFilter = filtro
+            DV.Sort = "estado,clvMpio"
+            dt = DV.ToTable()
+
+            csSQLsvr.LlenarRadCombo(catMpio, comando, conBaseDatos, dt)
+        Else
+
+            catMpio.Items.Clear()
+            catMpio.Items.Insert(0, New Telerik.Web.UI.RadComboBoxItem("<Seleccione un Estado>", "0"))
+
+        End If
+
+
+    End Sub
+
 
     'Mensajes
     Public Sub ConfigureNotification(ByRef notificacion As Telerik.Web.UI.RadNotification, ByVal texto As String, Optional ByVal titulo As String = "Atención")

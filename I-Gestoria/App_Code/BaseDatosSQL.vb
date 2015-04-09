@@ -241,14 +241,25 @@ Public Class BaseDatosSQL
         End Try
     End Function
 
-    Public Function LlenarRadCombo(ByRef combo As Telerik.Web.UI.RadComboBox, ByVal query As String, Optional ByVal conn_string As String = "") As Estatus
+    Public Function LlenarRadCombo(ByRef combo As Telerik.Web.UI.RadComboBox, ByVal query As String, Optional ByVal conn_string As String = "", Optional ByRef tabla As DataTable = Nothing) As Estatus
         errorDesc = ""
         LlenarRadCombo = Estatus.OK
+        Dim dt As DataTable
         Try
-            LeerRegistrosDataset(query, conn_string)
-            combo.DataSource = dataSet.Tables(0)
-            combo.DataValueField = dataSet.Tables(0).Columns(0).Caption
-            combo.DataTextField = dataSet.Tables(0).Columns(1).Caption
+            If tabla Is Nothing Then
+
+                LeerRegistrosDataset(query, conn_string)
+                dt = dataSet.Tables(0)
+
+            Else
+
+                dt = tabla
+
+            End If
+
+            combo.DataSource = dt
+            combo.DataValueField = dt.Columns(0).Caption
+            combo.DataTextField = dt.Columns(1).Caption
             combo.DataBind()
         Catch ex As Exception
             errorDesc = ex.Message

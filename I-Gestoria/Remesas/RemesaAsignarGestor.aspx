@@ -80,7 +80,8 @@
                                      runat="server"></asp:Label>
                              </td>
                              <td align="left" class="table_td"> 
-                                  <telerik:RadComboBox ID="cboEstado" runat="server" Culture="es-ES">
+                                  <telerik:RadComboBox ID="cboEstado" runat="server" Culture="es-ES" 
+                                      AutoPostBack="True">
                                    </telerik:RadComboBox>
                              </td>
                              <td align="right" class="table_td">
