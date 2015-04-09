@@ -81,8 +81,7 @@ Partial Class RemesaAsignarGestor
 
     Public Sub LlenaGrid()
 
-
-        Dim poliza As String = txtRemesa.Text
+        Dim remesa As String = txtRemesa.Text
         'Dim cliente As String = CboCliente.SelectedValue
         'Dim tipoServicio As String = cboServicioTipo.SelectedValue
         Dim FechaInicio As String = rdFI.SelectedDate.Value.ToString("yyyyMMdd")
@@ -92,47 +91,28 @@ Partial Class RemesaAsignarGestor
         Dim EstatusAsignacion As String = cboStatusAsigna.SelectedValue
         Dim Orden As String = ""
 
-        'If ChkOrdenar.Checked Then
-
-        '    If RadioButtonList1.SelectedValue = 0 Then
-        '        Orden = " order by NomAseg "
-        '    End If
-
-        'End If
-
         Dim ds As New DataSet
         Dim dt As New DataTable
 
-        'If Me.chkJuridico.Checked Then
-        '    ds = csDAL.CargaAsignacionesSinJuridico(poliza, cliente, tipoServicio, FechaInicio, FechaFinal, Regional, Estado, EstatusAsignacion, Orden)
-        '    dt = ds.Tables(0)
-        'Else
-        '    ds = csDAL.CargaAsignaciones(poliza, cliente, tipoServicio, FechaInicio, FechaFinal, Regional, Estado, EstatusAsignacion, Orden)
-        '    dt = ds.Tables(0)
-        'End If
+        Dim _filtros As String = ""
+
+        dt = csDAL.RemesaCargaAsignaciones(_filtros)
 
 
         If dt.Rows.Count <> 0 Then
             ViewState("dataset") = dt
-            radSeguimiento.CurrentPageIndex = 0
-            radSeguimiento.DataSource = dt
-            radSeguimiento.DataBind()
-            radSeguimiento.Dispose()
+            radRemesaAsignacion.CurrentPageIndex = 0
+            radRemesaAsignacion.DataSource = dt
+            radRemesaAsignacion.DataBind()
+            radRemesaAsignacion.Dispose()
             'UpdatePanelGrid.Update()
-
-
-
-            'If Me.chkJuridico.Checked = False Then
-            '    RecalculaValoresGrid()
-            'End If
 
             lblNumServ.Text = dt.Rows.Count
 
         Else
 
-
             ''Mensage de que no se tienen valores a mostrar
-            radSeguimiento.Rebind()
+            radRemesaAsignacion.Rebind()
             ds.Tables.Clear()
             csDAL.ConfigureNotification(RadNotification2, "No existen datos a mostrar.")
 
@@ -147,25 +127,25 @@ Partial Class RemesaAsignarGestor
     '    'cargaEstados(cboRegion.SelectedValue)
     'End Sub
 
-    Protected Sub radSeguimiento_PageIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridPageChangedEventArgs) Handles radSeguimiento.PageIndexChanged
+    Protected Sub radSeguimiento_PageIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridPageChangedEventArgs) Handles radRemesaAsignacion.PageIndexChanged
 
         'Paginación
         Dim dt As DataTable = ViewState("dataset")
-        radSeguimiento.DataSource = dt.DefaultView
-        radSeguimiento.DataBind()
-        radSeguimiento.Dispose()
+        radRemesaAsignacion.DataSource = dt.DefaultView
+        radRemesaAsignacion.DataBind()
+        radRemesaAsignacion.Dispose()
         UpdatePanelGrid.Update()
         RecalculaValoresGrid()
     End Sub
 
-    Protected Sub grid_ItemCommand(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridCommandEventArgs) Handles radSeguimiento.ItemCommand
+    Protected Sub grid_ItemCommand(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridCommandEventArgs) Handles radRemesaAsignacion.ItemCommand
 
         RecalculaValoresGrid()
 
         If e.CommandName = "cmdcontactar" Then
             Dim indexRow As Integer = Convert.ToInt32(e.Item.ItemIndex)
 
-            Dim item As GridDataItem = radSeguimiento.Items(indexRow)
+            Dim item As GridDataItem = radRemesaAsignacion.Items(indexRow)
             Dim item3 As GridDataItem = DirectCast(e.Item, GridDataItem)
             Dim sGestion As String = DirectCast(item3("cmdNumservicio").Controls(0), LinkButton).Text
             Session("NumGestionSeguimiento") = sGestion
@@ -189,7 +169,7 @@ Partial Class RemesaAsignarGestor
 
             Dim indexRow As Integer = Convert.ToInt32(e.Item.ItemIndex)
 
-            Dim item As GridDataItem = radSeguimiento.Items(indexRow)
+            Dim item As GridDataItem = radRemesaAsignacion.Items(indexRow)
             Dim item3 As GridDataItem = DirectCast(e.Item, GridDataItem)
             Dim sGestion As String = DirectCast(item3("cmdNumservicio").Controls(0), LinkButton).Text
             Session("NumGestionSeguimiento") = sGestion
@@ -208,23 +188,23 @@ Partial Class RemesaAsignarGestor
     Protected Sub RadAjaxManager1_AjaxRequest(ByVal sender As Object, ByVal e As Web.UI.AjaxRequestEventArgs) Handles RadAjaxManager1.AjaxRequest
 
         If e.Argument = "Rebind" Then
-            radSeguimiento.MasterTableView.SortExpressions.Clear()
-            radSeguimiento.MasterTableView.GroupByExpressions.Clear()
-            radSeguimiento.Rebind()
+            radRemesaAsignacion.MasterTableView.SortExpressions.Clear()
+            radRemesaAsignacion.MasterTableView.GroupByExpressions.Clear()
+            radRemesaAsignacion.Rebind()
             LlenaGrid()
             RecalculaValoresGrid()
         ElseIf e.Argument = "RebindAndNavigate" Then
-            radSeguimiento.MasterTableView.SortExpressions.Clear()
-            radSeguimiento.MasterTableView.GroupByExpressions.Clear()
-            radSeguimiento.MasterTableView.CurrentPageIndex = radSeguimiento.MasterTableView.PageCount - 1
-            radSeguimiento.Rebind()
+            radRemesaAsignacion.MasterTableView.SortExpressions.Clear()
+            radRemesaAsignacion.MasterTableView.GroupByExpressions.Clear()
+            radRemesaAsignacion.MasterTableView.CurrentPageIndex = radRemesaAsignacion.MasterTableView.PageCount - 1
+            radRemesaAsignacion.Rebind()
         End If
     End Sub
 
     Public Sub RecalculaValoresGrid()
         Dim cuentaContactoCliente As Integer = 0
         Dim cuentaContactoGestor As Integer = 0
-        For Each item As GridDataItem In radSeguimiento.Items
+        For Each item As GridDataItem In radRemesaAsignacion.Items
 
             If item.Cells(8).Text = "" Then
                 item.Cells(10).Text = ""
@@ -369,7 +349,9 @@ Partial Class RemesaAsignarGestor
         Else
             csDAL.ConfigureNotification(RadNotification2, "Favor de seleccionar un numero de servicio")
         End If
+
     End Sub
 
 
+   
 End Class

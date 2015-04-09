@@ -5,11 +5,11 @@
         <script type="text/javascript">
 //            var objBoton = '<%=btnBuscar.ClientID%>'
             function ShowEditForm(id, rowIndex) {
-                var grid = $find("<%= radSeguimiento.ClientID %>");
+                var grid = $find("<%= radRemesaAsignacion.ClientID %>");
                 var rowControl = grid.get_masterTableView().get_dataItems()[rowIndex].get_element();
                 grid.get_masterTableView().selectItem(rowControl, true);
                 //window.radopen("EditFormVB.aspx?EmployeeID=" + id, "UserListDialog");
-                window.radopen("AsignarGestor_Pendiente1.aspx", "UserListDialog");
+                window.radopen("RemesaAsignarGestor.aspx", "UserListDialog");
                 return false;
             }
             function ShowInsertForm() {
@@ -243,7 +243,7 @@
                                 Text="Asignacion">
                             </telerik:RadButton>
                         <telerik:RadXmlHttpPanel ID="panelGrid" Runat="server" CssClass="PanelGrid" Visible="true">
-                            <telerik:RadGrid ID="radSeguimiento" CssClass="Grid" runat="server" BorderWidth="0px" 
+                            <telerik:RadGrid ID="radRemesaAsignacion" CssClass="Grid" runat="server" BorderWidth="0px" 
                                 AutoGenerateColumns="False" PageSize="20" Skin="Windows7" 
                         Culture="es-ES"   CellSpacing="0" GridLines="None" 
                                 Font-Size="Smaller">

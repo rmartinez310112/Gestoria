@@ -505,7 +505,7 @@
                                           VisibleOnPageLoad="False" IconUrl="~/Imagenes/iconos/laptopIco.png" Modal="true" VisibleStatusbar="false">
                     </telerik:RadWindow>
 
-                    <telerik:RadWindow runat="server" ID="WinRemesaPrimerContacto" NavigateUrl="~/Remesas/PrimerContactoGestor.aspx" Width="800" Height="700" ReloadOnShow="true" ShowContentDuringLoad="false" Behaviors="Close"  VisibleTitlebar="true" 
+                    <telerik:RadWindow runat="server" ID="WinRemesaPrimerContacto" NavigateUrl="~/Remesas/PrimerContactoGestor.aspx" Width="950" Height="650" ReloadOnShow="true" ShowContentDuringLoad="false" Behaviors="Close"  VisibleTitlebar="true" 
                                           VisibleOnPageLoad="False" IconUrl="~/Imagenes/iconos/laptopIco.png" Modal="true" VisibleStatusbar="false">
                     </telerik:RadWindow>
 

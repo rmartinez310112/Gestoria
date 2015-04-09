@@ -3704,6 +3704,16 @@ Public Class DALClass
     End Function
 
 
+    Public Function RemesaCargaAsignaciones(ByVal sQuery As String) As DataTable
+
+        Dim comando As String = String.Empty
+        comando = "exec Select_RemesasAsignacion_Sp '" & sQuery & "'"
+
+        RemesaCargaAsignaciones = csSQLsvr.QueryDataSet(comando, conBaseDatos).Tables(0)
+        Return RemesaCargaAsignaciones
+
+    End Function
+
 #End Region
 
 
