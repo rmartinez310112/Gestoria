@@ -53,7 +53,9 @@ Partial Class RemesaAsignarGestor
     End Sub
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
         VentanasWin = New Ventanas(Master)
+
         If Not Page.IsPostBack Then
             csDAL.CargaEstados(cboEstado)
             'cargaEstados(cboRegion.SelectedValue)
@@ -91,10 +93,10 @@ Partial Class RemesaAsignarGestor
         Dim EstatusAsignacion As String = cboStatusAsigna.SelectedValue
         Dim Orden As String = ""
 
-        Dim ds As New DataSet
+
         Dim dt As New DataTable
 
-        Dim _filtros As String = ""
+        Dim _filtros As String = " WHERE RG.RFC_Gestor = '''' "
 
         dt = csDAL.RemesaCargaAsignaciones(_filtros)
 
@@ -113,7 +115,6 @@ Partial Class RemesaAsignarGestor
 
             ''Mensage de que no se tienen valores a mostrar
             radRemesaAsignacion.Rebind()
-            ds.Tables.Clear()
             csDAL.ConfigureNotification(RadNotification2, "No existen datos a mostrar.")
 
         End If
@@ -346,8 +347,11 @@ Partial Class RemesaAsignarGestor
 
             VentanasWin.Abrir_WinWinRemesaPrimerContacto()
             '    RecalculaValoresGrid()
+
         Else
+
             csDAL.ConfigureNotification(RadNotification2, "Favor de seleccionar un numero de servicio")
+
         End If
 
     End Sub
