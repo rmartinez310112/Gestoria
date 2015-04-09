@@ -54,10 +54,10 @@ Partial Class GeneracionRemesa
         End If
     End Sub
 
-    Public Sub AgregarValorInicialDDL(ByRef ddl As Telerik.Web.UI.RadComboBox)
-        ddl.Items.Add(New Telerik.Web.UI.RadComboBoxItem("----------", "0"))
-        ddl.SelectedValue = "0"
-    End Sub
+    'Public Sub AgregarValorInicialDDL(ByRef ddl As Telerik.Web.UI.RadComboBox)
+    '    ddl.Items.Add(New Telerik.Web.UI.RadComboBoxItem("----------", "0"))
+    '    ddl.SelectedValue = "0"
+    'End Sub
 
     Public Sub cargaClientes()
         Dim comando As String = "exec Select_cbo_clientes"
@@ -65,27 +65,29 @@ Partial Class GeneracionRemesa
     End Sub
 
     Public Sub cargaEstados()
-        Dim comando As String = "Select Clave, Nombre from Estados Order By Clave"
-        csSQLsvr.LlenarRadCombo(cmbEstado, comando, Session("connGestion"))
+        csDAL.CargaEstados(cmbEstado)
+        'Dim comando As String = "Select Clave, Nombre from Estados Order By Clave"
+        'csSQLsvr.LlenarRadCombo(cmbEstado, comando, Session("connGestion"))
     End Sub
 
     Protected Sub cmbEstado_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cmbEstado.SelectedIndexChanged
         Dim idEstado As Integer
         idEstado = cmbEstado.SelectedValue
-        cargaMunicipios(idEstado)
+        csDAL.CargaMpio(cmbMunicipio, idEstado)
+        'cargaMunicipios(idEstado)
     End Sub
 
-    Public Sub cargaMunicipios(ByVal estado As String)
-        Dim comando As String
-        If estado <> "" Then
-            comando = "exec Select_municipios_sp @id_estado = " & estado
-        Else
-            comando = "exec Select_municipios_sp"
-        End If
-        csSQLsvr.LlenarRadCombo(cmbMunicipio, comando, Session("connGestion"))
-        AgregarValorInicialDDL(cmbMunicipio)
+    'Public Sub cargaMunicipios(ByVal estado As String)
+    '    Dim comando As String
+    '    If estado <> "" Then
+    '        comando = "exec Select_municipios_sp @id_estado = " & estado
+    '    Else
+    '        comando = "exec Select_municipios_sp"
+    '    End If
+    '    csSQLsvr.LlenarRadCombo(cmbMunicipio, comando, Session("connGestion"))
+    '    AgregarValorInicialDDL(cmbMunicipio)
 
-    End Sub
+    'End Sub
 
     Public Sub cargaServicioTipo()
         Dim comando As String = "Select Tramite_clvTramite, Tramite_Descripcion from TramitesGestion order by Tramite_clvTramite "
