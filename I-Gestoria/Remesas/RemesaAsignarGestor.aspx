@@ -277,15 +277,20 @@
         </telerik:GridBoundColumn>
         <telerik:GridBoundColumn DataField="FechaAlta" 
             FilterControlAltText="Filter FechaAlta column" HeaderText="Fecha Activacion" 
-            UniqueName="FechaAlta" DataFormatString="{0:yyyy/MM/dd}">
+            UniqueName="FechaAlta" DataFormatString="{0:yyyy/MM/dd}" Display="False">
         </telerik:GridBoundColumn>
         <telerik:GridBoundColumn 
             FilterControlAltText="Filter DiasTranscurridosAsigna column" HeaderText="Dias Transcurridos" 
             UniqueName="DiasTranscurridosAsigna">
         </telerik:GridBoundColumn>
-        <telerik:GridBoundColumn DataField="EnlaceAsignacion" 
-            FilterControlAltText="Filter EnlaceAsignacion column" HeaderText="Fecha Asignacion" 
-            UniqueName="EnlaceAsignacion">
+        <telerik:GridButtonColumn CommandName="CmdEnlaceAsignacion" 
+            FilterControlAltText="Filter CmdEnlaceAsignacion column" 
+            HeaderText="Fecha Asignacion" Text="Asignacion" 
+            UniqueName="CmdEnlaceAsignacion">
+        </telerik:GridButtonColumn>
+        <telerik:GridBoundColumn DataField="fechaasignacion" 
+            FilterControlAltText="Filter fechaasignacion column" 
+            UniqueName="fechaasignacion" Display="False">
         </telerik:GridBoundColumn>
         <telerik:GridBoundColumn 
             FilterControlAltText="Filter IntentosAsignacion column" HeaderText="Intentos Asignacion" 
@@ -336,7 +341,7 @@
             FilterControlAltText="Filter AccionSiguiente column" HeaderText="Accion Siguiente" 
             UniqueName="AccionSiguiente" EmptyDataText="">
         </telerik:GridBoundColumn>
-        <telerik:GridBoundColumn DataField="NumServiciosRemesa" Display="False"
+        <telerik:GridBoundColumn DataField="NumServiciosRemesa"
             FilterControlAltText="Filter NumServiciosRemesa column" HeaderText="Num Servicios" 
             UniqueName="NumServiciosRemesa" EmptyDataText="">
         </telerik:GridBoundColumn>
