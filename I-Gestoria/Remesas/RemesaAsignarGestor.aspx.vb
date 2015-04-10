@@ -205,6 +205,7 @@ Partial Class RemesaAsignarGestor
             Session("NumRemesa") = sRemesa
 
             VentanasWin.Abrir_winwinRemesaEntregaCotizacion()
+
             'Abrir_winwinRemesaEntregaCotizacion
             'RemesaEntregaCotizacion.aspx
 
