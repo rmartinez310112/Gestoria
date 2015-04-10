@@ -98,6 +98,10 @@
             setTimeout("Abrir_Ventana('WinRemesaPrimerContacto')", delay_abrir_ventana);
         }
 
+        function Abrir_WinRemesaRecepcionDocumentos() {
+            setTimeout("Abrir_Ventana('WinRemesaRecepcionDocumentos')", delay_abrir_ventana);
+        }
+
         ///////////////////////////////////////////////////////////
 
         function Abrir_Ventana(ventana) {
@@ -506,6 +510,10 @@
                     </telerik:RadWindow>
 
                     <telerik:RadWindow runat="server" ID="WinRemesaPrimerContacto" NavigateUrl="~/Remesas/PrimerContactoGestor.aspx" Width="950" Height="650" ReloadOnShow="true" ShowContentDuringLoad="false" Behaviors="Close"  VisibleTitlebar="true" 
+                                          VisibleOnPageLoad="False" IconUrl="~/Imagenes/iconos/laptopIco.png" Modal="true" VisibleStatusbar="false">
+                    </telerik:RadWindow>
+
+                     <telerik:RadWindow runat="server" ID="WinRemesaRecepcionDocumentos" NavigateUrl="~/Remesas/RemesaRecepcionDocumentos.aspx" Width="950" Height="650" ReloadOnShow="true" ShowContentDuringLoad="false" Behaviors="Close"  VisibleTitlebar="true" 
                                           VisibleOnPageLoad="False" IconUrl="~/Imagenes/iconos/laptopIco.png" Modal="true" VisibleStatusbar="false">
                     </telerik:RadWindow>
 

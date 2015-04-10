@@ -242,6 +242,9 @@
                             <telerik:RadButton ID="btnDetalleGestor0" runat="server" 
                                 Text="Asignacion">
                             </telerik:RadButton>
+                            <telerik:RadButton ID="btnRecepcionDoctos" runat="server" 
+                                Text="Recep Documentos">
+                            </telerik:RadButton>
                         <telerik:RadXmlHttpPanel ID="panelGrid" Runat="server" CssClass="PanelGrid" Visible="true">
                             <telerik:RadGrid ID="radRemesaAsignacion" CssClass="Grid" runat="server" BorderWidth="0px" 
                                 AutoGenerateColumns="False" PageSize="20" Skin="Windows7" 

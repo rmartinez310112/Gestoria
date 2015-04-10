@@ -62,6 +62,17 @@ Public Class Ventanas
 
     End Sub
 
+    Public Sub Abrir_WinWinRemesaRecepcionDocumentos()
+        Dim rad As RadAjaxPanel
+        'Control lbl = this.Page.Master.FindControl("Cabecera1");
+        ' Recupera el RadAjaxPanel
+        rad = master.FindControl("RadAjaxPanel")
+
+        ' Abre la ventana
+        rad.ResponseScripts.Add("Abrir_WinRemesaRecepcionDocumentos();")
+
+    End Sub
+
 
     Public Sub Abrir_winwinPrimerCg()
         Dim rad As RadAjaxPanel
