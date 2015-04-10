@@ -327,92 +327,65 @@
                                                 AutoGenerateColumns="False" AllowPaging="True" PageSize="20" Skin="Transparent" 
                                                 Culture="es-ES" Width="1650px" CellSpacing="0" GridLines="None">
                                         <MasterTableView>
-                                       <%--<HeaderStyle ForeColor="White" BackColor="#8EC640" Font-Bold="true" BorderWidth="1"/>
-                                            <RowIndicatorColumn Visible="true">
-                                            </RowIndicatorColumn>
-                                            <ExpandCollapseColumn Created="True">
-                                            </ExpandCollapseColumn>--%>
-                                                            <CommandItemSettings ExportToPdfText="Export to PDF" />
-                                                            <RowIndicatorColumn FilterControlAltText="Filter RowIndicator column" 
-                                                                                Visible="True">
-                                                                                <HeaderStyle Width="20px" />
-                                                            </RowIndicatorColumn>
-                                                            <ExpandCollapseColumn FilterControlAltText="Filter ExpandColumn column" 
-                                                                Visible="True">
-                                                                <HeaderStyle Width="20px" />
-                                                            </ExpandCollapseColumn>
 
                                             <Columns>
-                                                <telerik:GridButtonColumn CommandName="cmdNoGestion" ButtonType="LinkButton" UniqueName="Gestion" DataTextField="NoGestion" ItemStyle-ForeColor="Blue" HeaderText="No. Servicio">
+                                                <telerik:GridButtonColumn CommandName="cmdRemesa" ButtonType="LinkButton" 
+                                                    UniqueName="column" DataTextField="Remesa" ItemStyle-ForeColor="Blue" 
+                                                    HeaderText="No. Remesa" FilterControlAltText="Filter column column">
                                                     <ItemStyle ForeColor="Blue" />
                                                 </telerik:GridButtonColumn>
-                                                <telerik:GridBoundColumn DataField="NoGestion" HeaderText="Sexo" 
-                                                    SortExpression="NoGestion2" UniqueName="NoGestion2" Display="False" 
-                                                    EmptyDataText=""> 
+                                                <telerik:GridBoundColumn DataField="cliente_NomCliente" HeaderText="Cliente" 
+                                                    UniqueName="column1" FilterControlAltText="Filter column1 column"> 
                                                 </telerik:GridBoundColumn>
-                                                <telerik:GridBoundColumn DataField="Reporte_poliza" UniqueName="Poliza" 
-                                                    HeaderText="No. Póliza" EmptyDataText="">
+                                                <telerik:GridBoundColumn DataField="NOMBRE" UniqueName="column2" 
+                                                    HeaderText="Estado" FilterControlAltText="Filter column2 column">
                                                 </telerik:GridBoundColumn>
-                                                <telerik:GridBoundColumn DataField="Estado" UniqueName="Estado" 
-                                                    HeaderText="Estado" EmptyDataText="" >
+                                                <telerik:GridBoundColumn DataField="FechaAlta" UniqueName="column3" 
+                                                    HeaderText="Fecha de Activación" 
+                                                    FilterControlAltText="Filter column3 column" >
                                                 </telerik:GridBoundColumn>
-                                                <telerik:GridBoundColumn DataField="Mpio" UniqueName="Municipio" 
-                                                    HeaderText="Municipio" EmptyDataText="">
+                                                <telerik:GridBoundColumn DataField="gestor" UniqueName="column4" 
+                                                    HeaderText="Gestor Asignado" FilterControlAltText="Filter column4 column">
                                                 </telerik:GridBoundColumn>
-                                                <telerik:GridBoundColumn DataField="cliente_NomCliente" UniqueName="Cliente" 
-                                                    HeaderText="Cliente" EmptyDataText="">
+                                                <telerik:GridBoundColumn DataField="Dias_Transcurridos" UniqueName="column5" 
+                                                    HeaderText="Dias Transcurridos" 
+                                                    FilterControlAltText="Filter column5 column">
                                                 </telerik:GridBoundColumn>
-                                                <telerik:GridBoundColumn DataField="Servicio_NomServicio" 
-                                                    UniqueName="TipoServicio" HeaderText="Tipo Servicio" EmptyDataText="">
+                                                <telerik:GridBoundColumn DataField="Seguimiento_a_Tramite" 
+                                                    UniqueName="column6" HeaderText="Seguimiento a Tramite" 
+                                                    FilterControlAltText="Filter column6 column">
                                                 </telerik:GridBoundColumn>
-                                                <telerik:GridBoundColumn DataField="FechaCita" UniqueName="FechaHoraCita" 
-                                                    HeaderText="Fecha y Hora cita" EmptyDataText="">
+                                                <telerik:GridBoundColumn DataField="fecha_TerminoTramiteAsignacion" UniqueName="column7" 
+                                                    HeaderText="Fecha Termino de Tramite" 
+                                                    FilterControlAltText="Filter column7 column">
                                                 </telerik:GridBoundColumn>
-                                                <telerik:GridBoundColumn DataField="diasTranscurridos" 
-                                                    UniqueName="DiasTranscurridos" HeaderText="Días Transcurridos" EmptyDataText="">
+                                                <telerik:GridBoundColumn DataField="Seguimiento_Envio_Documentos" 
+                                                    UniqueName="column8" HeaderText="Seguimiento Envio de Documentos" 
+                                                    FilterControlAltText="Filter column8 column">
                                                 </telerik:GridBoundColumn>
-                                                <telerik:GridButtonColumn DataTextField="SegACita" UniqueName="SegACita" 
-                                                    CommandName="cmdSegACita" ItemStyle-ForeColor="Blue" 
-                                                    HeaderText="Seguimiento a Cita" >
-                                                    <ItemStyle ForeColor="Blue" />
-                                                </telerik:GridButtonColumn>
-                                                <telerik:GridButtonColumn  DataTextField="SegDCita" UniqueName="SegDCita" CommandName="cmdSegDCita" ItemStyle-ForeColor="Blue" HeaderText="Seguimiento despues Cita" Visible="False" >
-                                                    <ItemStyle ForeColor="Blue" />
-                                                </telerik:GridButtonColumn>
-                                                <telerik:GridButtonColumn  DataTextField="SegTramite" UniqueName="SegATramite" ItemStyle-ForeColor="Blue" CommandName="cmdSegTramite" HeaderText="Seguimiento a Trámite" >
-                                                    <ItemStyle ForeColor="Blue" />
-                                                </telerik:GridButtonColumn>
-                                                <telerik:GridButtonColumn DataTextField="SegEnvioDoc" UniqueName="SegEnvDoc" ItemStyle-ForeColor="Blue" CommandName="cmdSegEnvDoc" HeaderText="Seguimiento envío de Documentos" >
-                                                    <ItemStyle ForeColor="Blue" />
-                                                </telerik:GridButtonColumn>
-                                                <telerik:GridBoundColumn DataField="Intentos" UniqueName="Int" 
-                                                    HeaderText="Intentos" EmptyDataText="">
+                                                <telerik:GridBoundColumn DataField="Fecha_RecepDocs" UniqueName="column9" 
+                                                    HeaderText="Fecha Envio de Documentos" 
+                                                    FilterControlAltText="Filter column9 column">
                                                 </telerik:GridBoundColumn >
 
-                                                <telerik:GridBoundColumn DataField="SigAc" UniqueName="SigAc" 
-                                                    HeaderText="Sig. Acción" EmptyDataText="">
+                                                <telerik:GridBoundColumn DataField="Consultar_Recepcion_Documentos" UniqueName="column10" 
+                                                    HeaderText="Consultar Recepcion de Documentos" 
+                                                    FilterControlAltText="Filter column10 column">
                                                 </telerik:GridBoundColumn >
 
-                                                <telerik:GridBoundColumn  DataField="FecLimSeg" UniqueName="FecLimSeg" 
-                                                    HeaderText="Fecha limite de Seguimiento" DataFormatString="{0:dd/MM/yyyy}" 
-                                                    EmptyDataText="" >
+                                                <telerik:GridBoundColumn  DataField="Documentos_Pendientes_Recepcion" UniqueName="column11" 
+                                                    HeaderText="Documentos pendientes de Recepción" 
+                                                    FilterControlAltText="Filter column11 column" >
                                                 </telerik:GridBoundColumn>
-                                                <telerik:GridBoundColumn DataField="ExpRec" Visible="false" 
-                                                    UniqueName="ExpeRec" HeaderText="Expediente Rechazado" EmptyDataText="">
+                                                <telerik:GridBoundColumn DataField="AccionSiguiente" 
+                                                    UniqueName="column12" HeaderText="Accion Siguiente" 
+                                                    FilterControlAltText="Filter column12 column">
                                                 </telerik:GridBoundColumn>
-                                                <telerik:GridBoundColumn DataField="MotRec" Visible="false" 
-                                                    UniqueName="MotiRec" HeaderText="Motivo de Rechazo" EmptyDataText="">
+                                                <telerik:GridBoundColumn DataField="Numero_Servicios_por_Remesa" 
+                                                    UniqueName="column13" HeaderText="Numero de servicios por Remesa" 
+                                                    FilterControlAltText="Filter column13 column">
                                                 </telerik:GridBoundColumn>
-                                                <telerik:GridButtonColumn DataTextField="NúmeroRechazos" 
-                                                    FilterControlAltText="Filter NúmeroRechazos column" 
-                                                    HeaderText="Numero de Rechazos" UniqueName="NúmeroRechazos" 
-                                                    CommandName="CmdNumRechazos">
-                                                </telerik:GridButtonColumn>
                                             </Columns>
-                                            <EditFormSettings>
-                                                <EditColumn FilterControlAltText="Filter EditCommandColumn column">
-                                                </EditColumn>
-                                            </EditFormSettings>
                                         </MasterTableView>
                                         <ClientSettings>
                                             <Selecting CellSelectionMode="None" AllowRowSelect="True" />
