@@ -26,28 +26,6 @@ Partial Class RemesaAsignarGestor
         csSQLsvr.LlenarRadCombo(cboStatusAsigna, comando, Session("connGestion"))
     End Sub
 
-    'Public Sub cargaStatusAsigna()
-    '    Dim comando As String = "exec Select_EstatusAsigna_Gestor_sp "
-    '    csSQLsvr.LlenarRadCombo(cboStatusAsigna, comando, Session("connGestion"))
-    'End Sub
-
-    'Public Sub cargaClientes()
-    '    Dim comando As String = "exec Select_cbo_clientes"
-    '    csSQLsvr.LlenarRadCombo(CboCliente, comando, Session("connGestion"))
-    'End Sub
-
-    'Public Sub cargaRegion()
-    '    Dim comando As String = "select clave, nombre from Regional order by clave"
-    '    csSQLsvr.LlenarRadCombo(cboRegion, comando, Session("connGestion"))
-
-    'End Sub
-
-    'Public Sub cargaServicioTipo()
-    '    Dim comando As String = "select Tramite_clvTramite, Tramite_Descripcion from TramitesGestion where Tramite_clvTramite < 14 order by Tramite_clvTramite"
-    '    csSQLsvr.LlenarRadCombo(cboServicioTipo, comando, Session("connGestion"))
-
-    'End Sub
-
     Protected Sub btnBuscar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnBuscar.Click
         LlenaGrid()
     End Sub
@@ -79,6 +57,7 @@ Partial Class RemesaAsignarGestor
         'answer = CDate(Today.Date.Year & "/" & Today.Date.Month & "/" & Today.Day - 30)
         Me.rdFI.SelectedDate = answer
         Me.rdFF.SelectedDate = DateTime.Now.Date
+
     End Function
 
     Public Sub LlenaGrid()
@@ -387,4 +366,22 @@ Partial Class RemesaAsignarGestor
     End Sub
 
 
+<<<<<<< HEAD
+=======
+   
+    Protected Sub btnRecepcionDoctos_Click(sender As Object, e As System.EventArgs) Handles btnRecepcionDoctos.Click
+        Session("NumRemesa") = "RM20151"
+        If Session("NumRemesa") <> "" Then
+
+            VentanasWin.Abrir_WinWinRemesaRecepcionDocumentos()
+            '    RecalculaValoresGrid()
+
+        Else
+
+            csDAL.ConfigureNotification(RadNotification2, "Favor de seleccionar un numero de servicio")
+
+        End If
+
+    End Sub
+>>>>>>> origin/master
 End Class
