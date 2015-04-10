@@ -168,6 +168,19 @@ Partial Class RemesaAsignarGestor
 
         ElseIf e.CommandName = "cmdAsignacion" Then
 
+            Session("NumRemesa") = "RM20151"
+            If Session("NumRemesa") <> "" Then
+
+                VentanasWin.Abrir_WinWinRemesaPrimerContacto()
+                '    RecalculaValoresGrid()
+
+            Else
+
+                csDAL.ConfigureNotification(RadNotification2, "Favor de seleccionar un numero de servicio")
+
+            End If
+
+
             Dim indexRow As Integer = Convert.ToInt32(e.Item.ItemIndex)
 
             Dim item As GridDataItem = radRemesaAsignacion.Items(indexRow)
@@ -181,6 +194,8 @@ Partial Class RemesaAsignarGestor
             VentanasWin.Abrir_winwinPrimerCg()
 
         ElseIf e.CommandName = "CmdEnlaceCotizacion" Then
+
+
 
             Dim indexRow As Integer = Convert.ToInt32(e.Item.ItemIndex)
 
@@ -371,21 +386,5 @@ Partial Class RemesaAsignarGestor
 
     End Sub
 
-    Protected Sub btnDetalleGestor0_Click(sender As Object, e As System.EventArgs) Handles btnDetalleGestor0.Click
-        Session("NumRemesa") = "RM20151"
-        If Session("NumRemesa") <> "" Then
 
-            VentanasWin.Abrir_WinWinRemesaPrimerContacto()
-            '    RecalculaValoresGrid()
-
-        Else
-
-            csDAL.ConfigureNotification(RadNotification2, "Favor de seleccionar un numero de servicio")
-
-        End If
-
-    End Sub
-
-
-   
 End Class
