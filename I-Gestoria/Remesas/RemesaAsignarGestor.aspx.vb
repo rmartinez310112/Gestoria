@@ -366,22 +366,4 @@ Partial Class RemesaAsignarGestor
     End Sub
 
 
-<<<<<<< HEAD
-=======
-   
-    Protected Sub btnRecepcionDoctos_Click(sender As Object, e As System.EventArgs) Handles btnRecepcionDoctos.Click
-        Session("NumRemesa") = "RM20151"
-        If Session("NumRemesa") <> "" Then
-
-            VentanasWin.Abrir_WinWinRemesaRecepcionDocumentos()
-            '    RecalculaValoresGrid()
-
-        Else
-
-            csDAL.ConfigureNotification(RadNotification2, "Favor de seleccionar un numero de servicio")
-
-        End If
-
-    End Sub
->>>>>>> origin/master
 End Class
